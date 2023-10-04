@@ -1,0 +1,761 @@
+.each_products_main_section {
+  width: 90%;
+  min-height: 100vh;
+  height: max-content;
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 1150px) {
+    flex-direction: column-reverse;
+  }
+
+  .each_products_product {
+    width: 70%;
+    height: max-content;
+    min-height: 20rem;
+    background-color: $dark-mode-grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 40px;
+    border-radius: 10px;
+
+    @media (max-width: 1150px) {
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .social {
+      width: 95%;
+      background-color: transparent;
+      height: 2rem;
+    }
+
+    .basic_information {
+      width: 95%;
+      min-height: 20rem;
+      height: max-content;
+      background-color: transparent;
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 840px) {
+        flex-direction: column;
+      }
+
+      .img_info {
+        width: 40%;
+        height: max-content;
+        min-height: 20rem;
+        background-color: transparent;
+
+        @media (max-width: 840px) {
+          width: 70%;
+          margin: 0 auto;
+        }
+        .main_img_container {
+          width: 100%;
+          height: 300px;
+          background-color: transparent;
+          border: 1px grey dotted;
+          overflow: hidden;
+          transition: 700ms;
+          &:hover {
+            transition: 700ms;
+            img {
+              transition: 700ms;
+              transform: scale(1.2);
+            }
+          }
+          img {
+            transition: 700ms;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+          }
+        }
+        .chosen {
+          width: 100%;
+          height: max-content;
+          min-height: 100px;
+          background-color: transparent;
+          display: flex;
+          flex-wrap: wrap;
+          div {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            margin: 0.5em;
+            cursor: pointer;
+            display: flex;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border-color: $div-red-bg !important;
+            label {
+              width: 100%;
+              height: 100%;
+              background-color: transparent;
+              @include flexCenter(row);
+              cursor: pointer;
+              img {
+                width: 80%;
+                height: 80%;
+                object-fit: contain;
+                object-position: center;
+                border-radius: 10px;
+              }
+            }
+            input {
+              position: absolute;
+              opacity: 0;
+            }
+          }
+        }
+      }
+
+      .information {
+        width: 58%;
+        height: max-content;
+        min-height: 20rem;
+        background-color: transparent;
+        @media (max-width: 840px) {
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .title_container {
+          width: 100%;
+          height: max-content;
+          min-height: 100px;
+          background-color: transparent;
+          .brand {
+            width: 100%;
+            height: 2rem;
+            background-color: transparent;
+
+            div {
+              display: flex;
+              cursor: pointer;
+              width: fit-content;
+              img {
+                width: 2rem;
+                height: 2rem;
+                // mix-blend-mode: color-burn;
+              }
+              p {
+                margin-left: 0.5em;
+                @include fontRegularRoboto;
+                color: $dark-text-white;
+                align-self: center;
+              }
+            }
+          }
+          .title {
+            width: 100%;
+            height: max-content;
+            background-color: transparent;
+            margin-top: 10px;
+            h1 {
+              width: fit-content;
+              font-size: 1.4rem;
+              @include fontBoldRoboto;
+              color: $dark-arrow-white;
+            }
+          }
+          .store {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            div {
+              width: fit-content;
+              height: 2rem;
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+              p {
+                margin-left: 0.5em;
+                color: $dark-text-white;
+                @include fontRegularRoboto;
+              }
+              svg {
+                color: $dark-arrow-white;
+              }
+            }
+          }
+        }
+
+        hr {
+          width: 90%;
+          margin: 0 auto;
+          margin-top: 20px;
+          color: $dark-icons-red;
+        }
+
+        .colors_and_basics {
+          width: 100%;
+          height: max-content;
+          min-height: 100px;
+          background-color: transparent;
+          display: flex;
+          justify-content: space-between;
+          margin-top: 15px;
+          @media (max-width: 500px) {
+            flex-direction: column;
+          }
+          .colors {
+            width: 40%;
+            min-height: 100px;
+            height: max-content;
+            background-color: transparent;
+            @media (max-width: 500px) {
+              width: 100%;
+            }
+            .title_color {
+              width: 100%;
+              height: 2rem;
+              background-color: transparent;
+              P {
+                @include fontRegularRoboto;
+                color: $dark-text-white;
+                span {
+                  @include fontMediumRoboto;
+                  color: $dark-cart-items-bg;
+                }
+              }
+            }
+            .color_divs {
+              width: 100%;
+              min-height: 5rem;
+              height: max-content;
+              display: flex;
+              flex-wrap: wrap;
+              background-color: transparent;
+              div {
+                width: 40px;
+                height: 40px;
+                margin: 0.5em;
+                background-color: transparent;
+                cursor: pointer;
+                border-radius: 50%;
+                position: relative;
+                @include flexCenter(column);
+                border-color: $dark-cart-icon-white !important;
+                label {
+                  width: 100% !important;
+                  height: 100% !important;
+                  cursor: pointer;
+                }
+                input {
+                  opacity: 0;
+                  position: absolute;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+          .basic_infos {
+            width: 58%;
+            min-height: 100px;
+            height: max-content;
+            background-color: transparent;
+            min-width: 240px;
+
+            @media (max-width: 500px) {
+              width: 100%;
+            }
+            P {
+              color: $dark-text-white;
+              font-size: 0.9rem;
+              @include fontMediumRoboto;
+              span {
+                color: $link-txt-blue;
+              }
+            }
+          }
+        }
+
+        .memories {
+          width: 100%;
+          height: max-content;
+          min-height: 100px;
+          background-color: transparent;
+          margin-top: 10px;
+          .title {
+            width: 100%;
+            height: 2rem;
+            background-color: transparent;
+            p {
+              @include fontMediumRoboto;
+              color: $dark-text-white;
+              span {
+                color: $link-txt-blue;
+              }
+            }
+          }
+          .memory_cont {
+            width: 100%;
+            height: min-content;
+            background-color: transparent;
+            display: flex;
+            flex-wrap: wrap;
+            div {
+              width: fit-content;
+              height: 50px;
+              background-color: $dark-txt-grey;
+              margin: 0.5em;
+              padding: 1em;
+              cursor: pointer;
+              @include flexCenter(row);
+              color: $dark-arrow-black;
+              @include fontMediumRoboto;
+              font-size: 0.9rem;
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .each_products_product_buy {
+    width: 25%;
+    min-width: 320px;
+    height: max-content;
+    background-color: $dark-mb-category-bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 2px;
+
+    @media (max-width: 1150px) {
+      width: 100%;
+      min-height: 10rem;
+      position: static;
+      padding-bottom: 20px;
+      padding-top: 20px;
+    }
+    @media (max-width: 400px) {
+      min-width: 10px;
+    }
+
+    .hot_sale_time {
+      width: 85%;
+      min-height: 4rem;
+      background-color: transparent;
+      display: flex;
+
+      @media (max-width: 1150px) {
+        justify-content: center;
+        width: 50%;
+      }
+
+      @media (max-width: 620px) {
+        width: 80%;
+      }
+      @media (max-width: 400px) {
+        width: 95%;
+      }
+      div {
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        @include flexCenter(column);
+        margin: 0.5em;
+        p {
+          font-size: 0.8rem;
+          @include fontMediumRoboto;
+          color: $div-red-bg;
+        }
+        span {
+          font-size: 0.7rem;
+          @include fontMediumRoboto;
+          color: $div-red-bg;
+        }
+      }
+    }
+
+    .buying {
+      width: 99%;
+      min-height: 100px;
+      height: max-content;
+      border-radius: 10px;
+      background-color: $dark-arrow-white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 10px;
+      @media (max-width: 1150px) {
+        width: 50%;
+      }
+      @media (max-width: 620px) {
+        width: 80%;
+      }
+      @media (max-width: 400px) {
+        width: 95%;
+      }
+
+      .price_cont {
+        width: 95%;
+        height: max-content;
+        min-height: 50px;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        P {
+          @include fontMediumRoboto;
+          color: $red-buttons;
+          font-size: 1.5rem;
+
+          span {
+            @include fontRegularRoboto;
+            color: $dark-items-bg;
+            text-decoration: line-through;
+            font-size: 1.1rem;
+          }
+        }
+      }
+
+      .buttons {
+        width: 95%;
+        display: flex;
+        height: max-content;
+        min-height: 50px;
+        background-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        .cart {
+          width: 50px;
+          height: 50px;
+          background-color: transparent;
+          border: 2px solid $dark-items-bg;
+          border-radius: 10px;
+          overflow: hidden;
+          transition: 700ms;
+          &:hover {
+            background-color: $dark-items-bg;
+            transition: 700ms;
+            svg {
+              color: $dark-arrow-white;
+              transition: 700ms;
+            }
+          }
+          svg {
+            width: 50%;
+            height: 50%;
+            color: $dark-arrow-black;
+          }
+        }
+        .buy {
+          width: 200px;
+          height: 50px;
+          background-color: $red-buttons;
+          @include fontRegularRoboto;
+          color: $dark-text-white;
+          border-radius: 10px;
+          transition: 700ms;
+          &:hover {
+            background-color: $div-red-bg;
+            transition: 700ms;
+          }
+        }
+      }
+      .credit_card_button {
+        width: 95%;
+        height: 50px;
+        background-color: $dark-items-bg;
+        margin-top: 20px;
+        border-radius: 10px;
+        @include fontRegularRoboto;
+        color: $dark-text-white;
+      }
+      .cards {
+        width: 95%;
+        height: max-content;
+        min-height: 50px;
+        background-color: transparent;
+        display: flex;
+        flex-wrap: nowrap;
+        margin-top: 20px;
+        justify-content: space-evenly;
+        padding: 10px;
+        // img{
+        //     width: 15%;
+        //     aspect-ratio: 3/2;
+        //     object-fit: contain;
+        //     // mix-blend-mode: color-burn;
+        // }
+        div {
+          width: 50px;
+          height: 50px;
+          // margin: 0.5em;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+          }
+        }
+      }
+    }
+  }
+}
+.nav_bar {
+  width: 95%;
+  height: 4rem;
+  background-color: transparent;
+  margin-top: 20px;
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    li {
+      background-color: transparent;
+      margin: 1em;
+      @include fontMediumRoboto;
+      font-size: 1.3rem;
+      color: $dark-text-white;
+      transition: 700ms;
+      cursor: pointer;
+
+      &:hover {
+        transition: 700ms;
+        color: $link-txt-blue;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 500px) {
+        font-size: 1rem;
+        margin: 0.3rem;
+      }
+    }
+  }
+}
+.description {
+  width: 95%;
+  min-height: 100px;
+  height: max-content;
+  margin-top: 20px;
+  background-color: transparent;
+  p {
+    @include fontRegularRoboto;
+    color: $dark-text-white;
+  }
+}
+.products_specifications {
+  width: 95%;
+  height: max-content;
+  min-height: 100px;
+  background-color: transparent;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    width: 100%;
+    height: 3rem;
+    background-color: transparent;
+    margin-top: 50px;
+
+    h2 {
+      font-size: 1.3rem;
+      @include fontBoldRoboto;
+      color: $dark-text-white;
+    }
+  }
+
+  .cat_table {
+    width: 100%;
+    height: max-content;
+    min-height: 20px;
+    background-color: transparent;
+    margin-top: 30px;
+    .spec_cat {
+      width: 100%;
+      height: max-content;
+      min-height: 20px;
+      background-color: transparent;
+      margin-top: 5px;
+      display: flex;
+      .spec_title {
+        background-color: transparents;
+        width: 20%;
+        height: 100%;
+        @include fontMediumRoboto;
+        color: $dark-txt-grey;
+        text-transform: capitalize;
+
+        @media (max-width: 600px) {
+          display: none;
+        }
+      }
+      .spec_basic {
+        width: 80%;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        @media (max-width: 600px) {
+          width: 100%;
+        }
+
+        .info_basic {
+          display: flex;
+          background-color: transparent;
+          &:nth-child(1) {
+            background-color: $dark-mb-category-bg-li;
+          }
+          @include fontRegularRoboto;
+
+          .info_type {
+            background-color: transparent;
+            width: 35%;
+            color: $dark-text-white;
+            @media (max-width: 600px) {
+              min-width: 35%;
+            }
+          }
+          .info_name {
+            background-color: transparent;
+            width: 65%;
+            color: $link-txt-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .infos_cont {
+    width: 100%;
+    min-height: 10rem;
+    height: max-content;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    @media (max-width: 570px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .branch_names_for_each {
+      width: 46%;
+      height: 15rem;
+      background-color: transparent;
+      @include scroll;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
+      @media (max-width: 570px) {
+        width: 95%;
+      }
+      .branch_container {
+        width: 100%;
+        height: 80px;
+        min-height: 80px;
+        background-color: $dark-items-bg;
+        margin-top: 15px;
+        position: relative;
+        @include flexCenter(column);
+        border-radius: 10px;
+        cursor: pointer;
+        text-transform: capitalize;
+        border-color: $div-red-bg !important;
+        label {
+          width: 100%;
+          height: 100%;
+          background-color: transparent;
+          text-align: center;
+          padding: 1em;
+          color: $dark-text-white;
+          @include fontRegularRoboto;
+          cursor: pointer;
+        }
+        p {
+          position: absolute;
+          top: 40px;
+          // color: $dark-searchBar-red;
+          color: #43aa8b;
+          @include fontMediumRoboto;
+        }
+        span {
+          position: absolute;
+          top: 40px;
+          color: $dark-searchBar-red;
+          @include fontMediumRoboto;
+        }
+        input {
+          position: absolute;
+          opacity: 0;
+        }
+      }
+    }
+    .working_infos {
+      width: 46%;
+      min-height: 15rem;
+      background-color: transparent;
+      @media (max-width: 570px) {
+        width: 95%;
+      }
+      text-transform: capitalize;
+      .working_hours {
+        width: 100%;
+        height: 3rem;
+        background-color: transparent;
+        margin-top: 15px;
+        h2 {
+          font-size: 1.3rem;
+          @include fontBoldRoboto;
+          color: $dark-txt-grey;
+        }
+      }
+      .weekdays {
+        width: 100%;
+        height: max-content;
+        min-height: 100px;
+        background-color: transparent;
+        margin-top: 10px;
+
+        .weekday_hour {
+          width: 100%;
+          min-height: 2.5rem;
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          P {
+            @include fontRegularRoboto;
+            &:nth-child(1) {
+              color: $dark-text-white;
+            }
+            &:nth-child(2) {
+              color: $link-txt-blue;
+            }
+          }
+        }
+        .please {
+          color: $div-red-bg;
+          font-size: 1.2rem;
+          @include fontBoldRoboto;
+        }
+      }
+      .map_container {
+        width: 100%;
+        height: 10rem;
+        background-color: transparent;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+    }
+  }
+}

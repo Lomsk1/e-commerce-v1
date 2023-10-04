@@ -1,0 +1,478 @@
+.nav {
+  width: 100%;
+  height: 4rem;
+  background-color: transparent;
+  display: flex;
+  .img_cont {
+    width: 200px;
+    height: 100%;
+    margin-left: 4em;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+}
+
+.register_container {
+  width: 100%;
+  height: max-content;
+  min-height: 100vh;
+
+  @media (max-height: 840px) {
+    padding-bottom: 20px;
+  }
+
+  .register_nav {
+    width: 100%;
+    height: 4rem;
+    background-color: transparent;
+    display: flex;
+    .img_cont {
+      width: 200px;
+      height: 100%;
+      margin-left: 4em;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+  }
+
+  .register_box {
+    @include authFormContainer;
+
+    @media (max-width: 620px) {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    .title {
+      width: 100%;
+      height: max-content;
+      background-color: transparent;
+      h1 {
+        font-size: 2.5rem;
+        @include fontBoldRoboto;
+        color: $dark-text-white;
+        span {
+          color: $link-txt-blue;
+        }
+      }
+      @media (max-width: 480px) {
+        text-align: center;
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }
+    .already_member_div {
+      width: 100%;
+      height: max-content;
+      min-height: 3rem;
+      background-color: transparent;
+      margin-top: 20px;
+      p {
+        @include fontRegularRoboto;
+        color: $dark-txt-grey;
+        a {
+          @include fontMediumRoboto;
+          color: $link-txt-blue;
+        }
+      }
+    }
+    .form_box {
+      width: 100%;
+      height: max-content;
+      min-height: 2rem;
+      background-color: transparent;
+      margin-top: 20px;
+      form {
+        width: 100%;
+        height: max-content;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+
+        svg {
+          background-color: transparent;
+          width: 25px;
+          height: 25px;
+          position: absolute;
+          right: 10px;
+          bottom: 18px;
+          color: #b9bacd;
+        }
+
+        .small_inputs {
+          width: 100%;
+          height: max-content;
+          background-color: transparent;
+          display: flex;
+          justify-content: space-between;
+          @media (max-width: 480px) {
+            flex-direction: column;
+          }
+
+          div {
+            width: 45%;
+            height: max-content;
+            display: flex;
+            flex-direction: column;
+            background-color: #596a7f;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            @media (max-width: 480px) {
+              width: 100%;
+              margin-top: 20px;
+            }
+
+            label {
+              width: auto;
+              margin-left: 1em;
+              @include fontMediumRoboto;
+              color: #283044;
+            }
+            input {
+              width: 100%;
+              height: 35px;
+              outline: none;
+              background: transparent;
+              padding-left: 1em;
+              padding-right: 2.5em;
+              @include fontRegularRoboto;
+              color: $dark-text-white;
+            }
+          }
+        }
+        .long_inputs {
+          width: 100%;
+          height: max-content;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 10px;
+          div {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #596a7f;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            label {
+              width: auto;
+              @include fontMediumRoboto;
+              color: #283044;
+              margin-left: 1em;
+            }
+            input {
+              width: 100%;
+              height: 35px;
+              outline: none;
+              background: transparent;
+              padding-left: 1em;
+              padding-right: 2.5em;
+              @include fontRegularRoboto;
+              color: $dark-text-white;
+            }
+          }
+        }
+
+        .terms_conditions {
+          margin: 0 auto;
+          margin-top: 20px;
+          background-color: transparent;
+          width: 80%;
+          p {
+            @include fontRegularRoboto;
+            text-align: center;
+            color: $dark-txt-grey;
+            font-size: 0.9rem;
+            a {
+              @include fontMediumRoboto;
+              color: $link-txt-blue;
+            }
+          }
+        }
+
+        button {
+          width: 200px;
+          height: 50px;
+          background-color: $red-buttons;
+          margin: 0 auto;
+          margin-top: 20px;
+          border-radius: 15px;
+          @include fontMediumRoboto;
+          color: $dark-text-white;
+        }
+      }
+      .error {
+        margin-left: 1em;
+        width: auto;
+      }
+    }
+  }
+  .status_200 {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    @include flexCenter(row);
+
+    .text_cont {
+      width: 300px;
+      height: max-content;
+      background-color: $dark-txt-grey;
+      @include flexCenter(column);
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 1em;
+      div {
+        width: 100%;
+        min-height: 4rem;
+        background-color: transparent;
+        text-align: center;
+        @include fontMediumRoboto;
+      }
+      button {
+        width: 150px;
+        height: 30px;
+        background-color: #13505b;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        @include fontRegularRoboto;
+        color: $dark-text-white;
+        transition: 500ms;
+        &:hover {
+          color: $link-txt-blue;
+          background-color: $dark-heading;
+        }
+      }
+    }
+  }
+}
+
+.log_in_section {
+  width: 100%;
+  height: max-content;
+  min-height: 100vh;
+
+  @media (max-height: 840px) {
+    padding-bottom: 20px;
+  }
+  .log_in_box {
+    @include authFormContainer;
+
+    @media (max-width: 620px) {
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    .title {
+      width: 100%;
+      height: max-content;
+      background-color: transparent;
+      h1 {
+        font-size: 2.5rem;
+        @include fontBoldRoboto;
+        color: $dark-text-white;
+        span {
+          color: $link-txt-blue;
+        }
+      }
+      @media (max-width: 480px) {
+        text-align: center;
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }
+    .member_div {
+      width: 100%;
+      height: max-content;
+      min-height: 3rem;
+      background-color: transparent;
+      margin-top: 20px;
+      p {
+        @include fontRegularRoboto;
+        color: $dark-txt-grey;
+        a {
+          @include fontMediumRoboto;
+          color: $link-txt-blue;
+        }
+      }
+    }
+    .form_box {
+      width: 100%;
+      height: max-content;
+      min-height: 2rem;
+      background-color: transparent;
+      margin-top: 20px;
+      form {
+        width: 100%;
+        height: max-content;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+
+        svg {
+          background-color: transparent;
+          width: 25px;
+          height: 25px;
+          position: absolute;
+          right: 10px;
+          bottom: 18px;
+          color: #b9bacd;
+        }
+        div {
+          width: 100%;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          background-color: #596a7f;
+          position: relative;
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          label {
+            width: auto;
+            @include fontMediumRoboto;
+            color: #283044;
+            margin-left: 1em;
+          }
+          input {
+            width: 100%;
+            height: 35px;
+            outline: none;
+            background: transparent;
+            padding-left: 1em;
+            padding-right: 2.5em;
+            @include fontRegularRoboto;
+            color: $dark-text-white;
+          }
+        }
+
+        .terms_conditions {
+          margin: 0 auto;
+          margin-top: 20px;
+          background-color: transparent;
+          width: 80%;
+          p {
+            @include fontRegularRoboto;
+            text-align: center;
+            color: $dark-txt-grey;
+            font-size: 0.9rem;
+            a {
+              @include fontMediumRoboto;
+              color: $link-txt-blue;
+            }
+          }
+        }
+
+        button {
+          width: 200px;
+          height: 50px;
+          background-color: $red-buttons;
+          margin: 0 auto;
+          margin-top: 20px;
+          border-radius: 15px;
+          @include fontMediumRoboto;
+          color: $dark-text-white;
+        }
+      }
+      .error {
+        margin-left: 1em;
+        width: auto;
+      }
+    }
+  }
+  .status_200 {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    @include flexCenter(row);
+
+    .text_cont {
+      width: 300px;
+      height: max-content;
+      background-color: $dark-txt-grey;
+      @include flexCenter(column);
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 1em;
+      div {
+        width: 100%;
+        min-height: 4rem;
+        background-color: transparent;
+        text-align: center;
+        @include fontMediumRoboto;
+      }
+      button {
+        width: 150px;
+        height: 30px;
+        background-color: #13505b;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        @include fontRegularRoboto;
+        color: $dark-text-white;
+        transition: 500ms;
+        &:hover {
+          color: $link-txt-blue;
+          background-color: $dark-heading;
+        }
+      }
+    }
+  }
+}
+.confirmation_form_container {
+  @include authFormContainer;
+  @include authFormBasic;
+}
+
+.user_confirm {
+  @include authFormContainer;
+  @include flexCenter(column);
+  .title {
+    h1 {
+      @include fontBoldRoboto;
+      color: $dark-txt-grey;
+      font-size: 1.5rem;
+    }
+  }
+  button {
+    width: 200px;
+    height: 50px;
+    background-color: $red-buttons;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    @include fontMediumRoboto;
+    color: $dark-text-white;
+  }
+  span {
+    margin-top: 20px;
+  }
+}

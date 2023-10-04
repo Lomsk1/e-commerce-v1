@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+$font-weights: (
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+// @media (prefers-color-scheme: light) {
+//   $dark-body-bg: white;
+// }
+
+// @media (prefers-color-scheme: dark) {
+//   $dark-body-bg: rgb(15 23 42);
+// }
+
+$dark-body-bg: rgb(15 23 42);
+
+@mixin scroll {
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bbe7f0;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #d6dee1;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: $dark-body-bg;
+  @include scroll;
+  // -webkit-font-smoothing: antialiased;
+}
+
+$dark-heading: #1e1f29;
+$dark-navigation-bg: #15161d;
+$dark-mb-bg: #091b1f;
+$dark-mb-category-bg: #071013;
+$dark-mb-category-bg-li: #0c1a1f91;
+$dark-mode-grey: #1e293b;
+$dark-cart-items-bg: #90c2e7;
+$dark-items-bg: #113537;
+$div-red-bg: #d10024e6;
+$register_bg: #273a50;
+
+$red-buttons: #df2320;
+
+$dark-icons-red: #ae1110;
+$dark-searchBar-red: #d10024;
+$dark-cart-icon-white: #eff4ef;
+$dark-arrow-white: #a1c6cf;
+$dark-arrow-black: #1c2321;
+
+$dark-text-white: #dcf3fd;
+$dark-text-red: #9f1719;
+$dark-cart-txt-white: #eff7ff;
+$dark-txt-grey: #a2aebb;
+
+$link-txt-blue: #4cb0c8;
+
+@mixin fontLightRoboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+@mixin fontRegularRoboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+@mixin fontMediumRoboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+@mixin fontBoldRoboto {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+}
+
+@mixin flexCenter($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+@mixin scroll {
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #bbe7f0;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #d6dee1;
+  }
+}
+
+.error_div {
+  color: red;
+}
+
+@mixin rotationFrame {
+  transform-origin: 100% center;
+  animation: svgAnimation 3s linear infinite;
+  @keyframes svgAnimation {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@mixin tableResponsive($width) {
+  table {
+    border-radius: 5px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    background-color: $dark-txt-grey;
+    margin-top: 10px;
+
+    td,
+    th {
+      text-align: center;
+      padding: 8px;
+    }
+    td {
+      height: fit-content;
+      color: $dark-mb-category-bg;
+      @include fontRegularRoboto;
+      border-right: 1px solid #f8f8f8;
+      font-size: 0.8rem;
+    }
+    th {
+      color: $dark-arrow-black;
+      background: #4fc3a1;
+      text-transform: capitalize;
+      font-size: 0.8rem;
+    }
+    th:nth-child(odd) {
+      color: $dark-text-white;
+      background: #324960;
+    }
+    tr:nth-child(even) {
+      background: $dark-arrow-white;
+    }
+
+    @media (max-width: $width) {
+      display: block;
+      width: 100%;
+
+      table:before {
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+      }
+      thead,
+      tbody,
+      th {
+        display: block;
+        @include scroll;
+      }
+      th:last-child {
+        border-bottom: none;
+      }
+      thead {
+        float: left;
+      }
+      tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+      }
+      td,
+      th {
+        padding: 20px 0.625em 0.625em 0.625em;
+        height: 140px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: auto;
+        overflow-y: auto;
+        width: 120px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+        @include flexCenter(column);
+        @include scroll;
+      }
+      th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+      }
+      tr {
+        display: table-cell;
+      }
+      tr:nth-child(odd) {
+        background: none;
+      }
+      tr:nth-child(even) {
+        background: transparent;
+      }
+      td:nth-child(odd) {
+        background: #f8f8f8;
+        border-right: 1px solid #e6e4e4;
+      }
+      td:nth-child(even) {
+        border-right: 1px solid #e6e4e4;
+      }
+      td {
+        display: block;
+        text-align: center;
+        @include flexCenter(column);
+      }
+    }
+  }
+}
+@mixin authFormContainer {
+  width: 500px;
+  height: max-content;
+  min-height: 200px;
+  background-color: $register_bg;
+  margin-left: 4em;
+  margin-top: 150px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+@mixin authFormBasic {
+  form {
+    width: 100%;
+    height: max-content;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+
+    svg {
+      background-color: transparent;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      right: 10px;
+      bottom: 18px;
+      color: #b9bacd;
+    }
+    div {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background-color: #596a7f;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      label {
+        width: auto;
+        @include fontMediumRoboto;
+        color: #283044;
+        margin-left: 1em;
+      }
+      input {
+        width: 100%;
+        height: 35px;
+        outline: none;
+        background: transparent;
+        padding-left: 1em;
+        padding-right: 2.5em;
+        @include fontRegularRoboto;
+        color: $dark-text-white;
+      }
+    }
+    button {
+      width: 200px;
+      height: 50px;
+      background-color: $red-buttons;
+      margin: 0 auto;
+      margin-top: 20px;
+      border-radius: 15px;
+      @include fontMediumRoboto;
+      color: $dark-text-white;
+    }
+  }
+  .error {
+    margin-left: 1em;
+    width: auto;
+  }
+}
