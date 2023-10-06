@@ -26,7 +26,7 @@ import ProfileContainer from "../profileContainer";
 import SearchBar from "../search_bar";
 
 function Navigation({ main_page }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // API
   const dispatch = useDispatch();
