@@ -14,7 +14,9 @@ interface CategoryModel extends Model<CategoryDoc> {
 
 // An interface that describes the properties
 // that a Category Document has
-export interface CategoryDoc extends Document {}
+export interface CategoryDoc extends Document {
+  name: string;
+}
 
 const categorySchema = new mongoose.Schema(
   {
