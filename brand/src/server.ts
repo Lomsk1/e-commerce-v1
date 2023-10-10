@@ -12,12 +12,12 @@ process.on("uncaughtException", (err) => {
 
 mongoose
   .connect(process.env.MONGO_AUTH_URI!, {
-    dbName: "auth"
+    dbName: "category"
   })
   .then(() => console.log("DB success"))
   .catch((e) => console.log(e));
 
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8002;
 
 const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
