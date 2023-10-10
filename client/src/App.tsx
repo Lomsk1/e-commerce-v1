@@ -4,6 +4,8 @@ import {
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
+import "./styles/main.scss";
+
 import RootLayout from "./layout/client/rootLayout";
 import HomePage from "./pages/home";
 

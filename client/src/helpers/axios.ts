@@ -1,5 +1,5 @@
-import axios from "axios";
-import { baseURL } from "../middlewares/env";
+// import axios from "axios";
+// import { userBaseURL } from "../middlewares/env";
 // import jwt_decode from "jwt-decode";
 // import dayjs from "dayjs";
 
@@ -19,22 +19,22 @@ import { baseURL } from "../middlewares/env";
 //   withCredentials: true,
 // });
 
-export const axiosUnAuthorizedWithImg = axios.create({
-  baseURL,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "multipart/form-data",
-  },
-});
+// export const axiosUnAuthorizedWithImg = axios.create({
+//   baseURL,
+//   headers: {
+//     Accept: "application/json",
+//     "Content-Type": "multipart/form-data",
+//   },
+// });
 
-export const axiosUnAuthorized = axios.create({
-  baseURL,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
-  // withCredentials: "true",
-});
+// export const axiosUnAuthorized = axios.create({
+//   baseURL,
+//   headers: {
+//     Accept: "application/json",
+//     "Content-Type": "application/json",
+//   },
+//   // withCredentials: "true",
+// });
 
 // axiosInstance.interceptors.request.use(async (req) => {
 //   if (!authTokens) {

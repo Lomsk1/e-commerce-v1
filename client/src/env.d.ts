@@ -1,5 +1,5 @@
 interface ImportMeta {
   env: {
-    VITE_APP_BASE_URL: string;
+    VITE_APP_BASE_URL_AUTH: string;
   };
 }
