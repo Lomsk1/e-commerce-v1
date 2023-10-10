@@ -63,7 +63,7 @@ export interface ProductDoc extends Document {
   createdAt: Date;
 }
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema<ProductAttrs>(
   {
     title: {
       type: String,

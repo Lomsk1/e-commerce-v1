@@ -18,7 +18,7 @@ export interface CategoryDoc extends Document {
   name: string;
 }
 
-const categorySchema = new mongoose.Schema(
+const categorySchema = new mongoose.Schema<CategoryAttrs>(
   {
     name: {
       type: String,

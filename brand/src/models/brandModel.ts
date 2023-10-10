@@ -24,7 +24,7 @@ export interface BrandDoc extends Document {
   image: string;
 }
 
-const brandSchema = new mongoose.Schema(
+const brandSchema = new mongoose.Schema<BrandAttrs>(
   {
     name: {
       type: String,
