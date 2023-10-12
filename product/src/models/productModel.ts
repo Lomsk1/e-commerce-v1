@@ -1,11 +1,21 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, Query } from "mongoose";
 import slugify from "slugify";
 
 // An interface that describes the properties
 // that are required to create a new Product
 interface ProductAttrs {
-  category: string;
-  brand: string;
+  category: {
+    id: string;
+    name: string;
+  };
+  branches: {
+    branch: mongoose.Schema.Types.ObjectId;
+    inStock: boolean;
+  }[];
+  brand: {
+    id: string;
+    name: string;
+  };
 
   title: string;
   separate: string;
@@ -27,6 +37,14 @@ interface ProductAttrs {
   totalInStock: boolean;
 
   createdAt: Date;
+
+  specifications: {
+    category: string;
+    specificationBasics: {
+      name: string;
+      middle: string;
+    }[];
+  }[];
 }
 
 // An interface that describes the properties
@@ -38,9 +56,18 @@ interface ProductModel extends Model<ProductDoc> {
 // An interface that describes the properties
 // that a Product Document has
 export interface ProductDoc extends Document {
-  category: string;
-  brand: string;
-
+  category: {
+    id: string;
+    name: string;
+  };
+  branches: {
+    branch: mongoose.Schema.Types.ObjectId;
+    inStock: boolean;
+  }[];
+  brand: {
+    id: string;
+    name: string;
+  };
   title: string;
   separate: string;
   slug: string;
@@ -61,6 +88,14 @@ export interface ProductDoc extends Document {
   totalInStock: boolean;
 
   createdAt: Date;
+
+  specifications: {
+    category: string;
+    specificationBasics: {
+      name: string;
+      middle: string;
+    }[];
+  }[];
 }
 
 const productSchema = new mongoose.Schema<ProductAttrs>(
@@ -137,6 +172,62 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
       default: Date.now(),
       select: false,
     },
+
+    specifications: [
+      {
+        category: {
+          type: String,
+          required: [true, "Please, add a name in specification"],
+        },
+        specificationBasics: [
+          {
+            name: {
+              type: String,
+              required: [true, "Please, add a name in spec basic"],
+            },
+            middle: {
+              type: String,
+              required: [true, "Please, add a middle in spec basic"],
+            },
+          },
+        ],
+      },
+    ],
+
+    branches: [
+      {
+        branch: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Branch",
+          required: [true, "Please, add a branch id"],
+        },
+        inStock: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
+
+    brand: {
+      id: {
+        type: String,
+        required: [true, "Please, add a brand id"],
+      },
+      name: {
+        type: String,
+        required: [true, "Please, add a brand name"],
+      },
+    },
+    category: {
+      id: {
+        type: String,
+        required: [true, "Please, add a category id"],
+      },
+      name: {
+        type: String,
+        required: [true, "Please, add a category name"],
+      },
+    },
   },
   {
     toJSON: {
@@ -147,6 +238,17 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
     },
   }
 );
+
+productSchema.pre(/^find/, function (next) {
+  const query = this as Query<ProductDoc[], ProductDoc>;
+
+  query.populate({
+    path: "branches.branch",
+    select: "_id name city address phone branchCoord branchWorkingHours",
+  });
+
+  next();
+});
 
 productSchema.pre("save", function (next) {
   this.slug = slugify(this.title, { lower: true });

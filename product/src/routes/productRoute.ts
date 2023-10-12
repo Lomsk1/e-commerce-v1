@@ -23,6 +23,6 @@ productRoute
   .get(getProduct)
   .patch(protect, restrictTo("editor", "admin"), updateProduct)
   .delete(protect, restrictTo("editor", "admin"), deleteProduct);
-productRoute.use(protect);
+
 
 export default productRoute;

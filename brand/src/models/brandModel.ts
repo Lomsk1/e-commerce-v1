@@ -7,6 +7,13 @@ interface BrandAttrs {
   description: string;
   thumbnail: string;
   image: string;
+
+  brandCategory: {
+    name: string;
+    products: {
+      productId: string;
+    }[];
+  }[];
 }
 
 // An interface that describes the properties
@@ -22,6 +29,12 @@ export interface BrandDoc extends Document {
   description: string;
   thumbnail: string;
   image: string;
+  brandCategory: {
+    name: string;
+    products: {
+      productId: string;
+    }[];
+  }[];
 }
 
 const brandSchema = new mongoose.Schema<BrandAttrs>(
@@ -34,6 +47,23 @@ const brandSchema = new mongoose.Schema<BrandAttrs>(
     description: String,
     thumbnail: String,
     image: String,
+
+    brandCategory: [
+      {
+        name: {
+          type: String,
+          required: [true, "Please, add a name"],
+        },
+        products: [
+          {
+            productId: {
+              type: String,
+              required: [true, "Please, add a product id"],
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     toJSON: {

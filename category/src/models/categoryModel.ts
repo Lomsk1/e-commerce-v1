@@ -4,6 +4,10 @@ import mongoose, { Document, Model } from "mongoose";
 // that are required to create a new Category
 interface CategoryAttrs {
   name: string;
+
+  products: {
+    productId: string;
+  }[];
 }
 
 // An interface that describes the properties
@@ -16,6 +20,9 @@ interface CategoryModel extends Model<CategoryDoc> {
 // that a Category Document has
 export interface CategoryDoc extends Document {
   name: string;
+  products: {
+    productId: string;
+  }[];
 }
 
 const categorySchema = new mongoose.Schema<CategoryAttrs>(
@@ -25,6 +32,14 @@ const categorySchema = new mongoose.Schema<CategoryAttrs>(
       unique: true,
       required: [true, "Enter Category Name"],
     },
+    products: [
+      {
+        productId: {
+          type: String,
+          required: [true, "Please, add product Id"],
+        },
+      },
+    ],
   },
   {
     toJSON: {

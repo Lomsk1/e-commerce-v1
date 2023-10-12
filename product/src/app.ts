@@ -6,6 +6,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { errorController } from "./controllers/errors/errorController";
 import productRoute from "./routes/productRoute";
+import branchRoute from "./routes/branchRoute";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 /* Routes */
 app.use("/api/v1/product", productRoute);
+app.use("/api/v1/branch", branchRoute);
 
 app.use(compression());
 

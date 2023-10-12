@@ -9,14 +9,18 @@ process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT REJECTION! Shutting down...");
   process.exit(1);
 });
-
-mongoose
-  .connect(process.env.MONGO_AUTH_URI!, {
-    dbName: "product"
-  })
-  .then(() => console.log("DB success"))
-  .catch((e) => console.log(e));
-
+const start = async () => {
+  try {
+    mongoose
+      .connect(process.env.MONGO_AUTH_URI!, {
+        dbName: "product",
+      })
+      .then(() => console.log("DB success"))
+      .catch((e) => console.log(e));
+  } catch (err) {
+    console.error(err);
+  }
+};
 const port = process.env.PORT || 8003;
 
 const server = app.listen(port, () => {
@@ -30,3 +34,5 @@ process.on("unhandledRejection", (err: any) => {
     process.exit(1);
   });
 });
+
+start();

@@ -12,7 +12,7 @@ process.on("uncaughtException", (err) => {
 
 mongoose
   .connect(process.env.MONGO_AUTH_URI!, {
-    dbName: "category",
+    dbName: "branch",
   })
   .then(() => console.log("DB success"))
   .catch((e) => console.log(e));

@@ -12,7 +12,7 @@ import { promises as fsPromises } from "fs";
 export const getAll = (Model: Model<Document>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     let filter = {};
-    if (req.params.receiptId) filter = { receipt: req.params.receiptID };
+    if (req.params.productId) filter = { product: req.params.productId };
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()
       .sort()
@@ -64,8 +64,8 @@ export const createOne = (Model: Model<Document>) =>
 export const updateOne = (Model: Model<Document>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const { body } = req;
-    let updatedData = { ...body };  
-    
+    let updatedData = { ...body };
+
     const data = await Model.findByIdAndUpdate(req.params.id, updatedData, {
       new: true,
       runValidators: true,
