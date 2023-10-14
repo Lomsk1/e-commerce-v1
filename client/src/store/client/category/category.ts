@@ -12,7 +12,7 @@ const useCategoryStore = create<InitialTypes>((set) => ({
   // Action to set the user data
   setCategories: (categories) => set({ categories: categories }),
 
-  clearUser: () => set({ categories: null }),
+  clearCategories: () => set({ categories: null }),
 }));
 
 export default useCategoryStore;

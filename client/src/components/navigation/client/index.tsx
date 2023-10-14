@@ -4,9 +4,12 @@ import AuthClientNavigation from "./components/auth";
 import useAuthStore from "../../../store/client/user/useAuthStore";
 import logo from "../../../assets/images/logos.png";
 import SearchBarNavigation from "./components/searchBar";
+import CartsNavigationComponent from "./components/wishlist";
+import useCategoryStore from "../../../store/client/category/category";
 
 const ClientNavigation: React.FC = () => {
   const { isAuthenticated, user } = useAuthStore((state) => state);
+  const { categories } = useCategoryStore((state) => state);
 
   const navigate = useNavigate();
   return (
@@ -36,45 +39,7 @@ const ClientNavigation: React.FC = () => {
           />
 
           {/* wish list & cart */}
-          <div className="wish_cart">
-            <div className="main cart">
-              {/* <div className="svg" onClick={cartLongHandler}>
-                <FontAwesomeIcon icon={faCartShopping} />
-                <div className="amount">
-                  <p>{cartLengthLocal}</p>
-                </div>
-              </div> */}
-              {/* <p className="title" onClick={cartLongHandler}>
-                Your Cart
-              </p> */}
-              {/* {cartLong && (
-                <CartWrapper
-                  data={cartData}
-                  visible={cartLong}
-                  close={cartLongHandler}
-                />
-              )} */}
-            </div>
-
-            <div
-              className="main wish"
-              //   onClick={() => {
-              //     if (isAuthenticated) {
-              //       navigate("/wishlist_main_page");
-              //     } else {
-              //       navigate("/log_in");
-              //     }
-              //   }}
-            >
-              <div className="svg">
-                {/* <FontAwesomeIcon icon={faHeart} /> */}
-                <div className="amount">
-                  {/* <p>{!wishIsLoading ? wishlistData.length : 0}</p> */}
-                </div>
-              </div>
-              <p className="title">Wishlist</p>
-            </div>
-          </div>
+          <CartsNavigationComponent />
         </div>
       </nav>
 

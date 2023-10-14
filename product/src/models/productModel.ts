@@ -21,7 +21,10 @@ interface ProductAttrs {
   separate: string;
   slug: string;
   description: string;
-  thumbnail: string;
+  thumbnail: {
+    public_id: string;
+    url: string;
+  };
   amount: number;
   new: boolean;
   price: number;
@@ -72,7 +75,10 @@ export interface ProductDoc extends Document {
   separate: string;
   slug: string;
   description: string;
-  thumbnail: string;
+  thumbnail: {
+    public_id: string;
+    url: string;
+  };
   amount: number;
   new: boolean;
   price: number;
@@ -115,7 +121,10 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
       type: String,
       required: [true, "A product must have a description"],
     },
-    thumbnail: String,
+    thumbnail: {
+      public_id: String,
+      url: String,
+    },
     amount: {
       type: Number,
       required: [true, "A product must have an amount"],

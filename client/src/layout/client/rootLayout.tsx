@@ -30,6 +30,10 @@ const RootLayout: React.FC = () => {
     userState(userQuery.data);
   }
 
+  if (categoryQuery.isLoading) {
+    return <h1>Loading... </h1>;
+  }
+
   /* Category Query Functions */
   if (categoryQuery.isSuccess) {
     categoriesState(categoryQuery.data);

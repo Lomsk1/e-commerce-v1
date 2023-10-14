@@ -24,6 +24,7 @@ const NavigationSearchForm: React.FC = () => {
 
   /* Store */
   const categoriesStore = useCategoryStore((state) => state.categories);
+
   const searchWrapper = useSearchWrapperStore(
     (state) => state.setSearchWrapperIsShow
   );

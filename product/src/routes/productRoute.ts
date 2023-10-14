@@ -9,6 +9,7 @@ import {
   getProductsBySlug,
   updateProduct,
 } from "../controllers/productController";
+import { uploadPhoto } from "../middlewares/multer";
 
 const productRoute = express.Router({
   mergeParams: true,
@@ -19,7 +20,7 @@ productRoute.get("/search/:slug", getProductsBySlug);
 productRoute
   .route("/")
   .get(getAllProduct)
-  .post(protect, restrictTo("admin"), createProduct);
+  .post(protect, restrictTo("admin"), uploadPhoto, createProduct);
 
 productRoute
   .route("/:id")

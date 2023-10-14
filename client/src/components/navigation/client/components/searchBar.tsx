@@ -16,7 +16,7 @@ const SearchBarNavigation: React.FC = () => {
         <NavigationSearchForm />
         {searchWrapperIsShow && (
           <SearchBarWrapper
-          products={products}
+            products={products}
             visible={searchWrapperIsShow}
             close={() => setSearchWrapperIsShow(false)}
           />
