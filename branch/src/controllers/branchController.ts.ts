@@ -1,14 +1,8 @@
 import axios from "axios";
-import { NextFunction, Request, Response, json } from "express";
+import { NextFunction, Request, Response } from "express";
 import Branch from "../models/branchModel";
 import { catchAsync } from "../utils/catchAsync";
-import {
-  createOne,
-  deleteOne,
-  getAll,
-  getOne,
-  updateOne,
-} from "./common/factoryController";
+import { getAll, getOne } from "./common/factoryController";
 import { productURI } from "../config/keys";
 import AppError from "../utils/appErrors";
 

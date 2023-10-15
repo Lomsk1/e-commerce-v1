@@ -1,5 +1,5 @@
 import CartForNavigation from "../../../cart/navigation/cartNav";
-// import WishlistForNavigation from "../../../cart/navigation/wishList";
+import WishlistForNavigation from "../../../cart/navigation/wishlist";
 
 const CartsNavigationComponent: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const CartsNavigationComponent: React.FC = () => {
         <CartForNavigation />
 
         {/* Wishlist */}
-        {/* <WishlistForNavigation /> */}
+        <WishlistForNavigation />
       </div>
     </>
   );

@@ -127,7 +127,7 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
     },
     amount: {
       type: Number,
-      required: [true, "A product must have an amount"],
+      default: 1,
     },
     new: {
       type: Boolean,

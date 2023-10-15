@@ -5,15 +5,16 @@ import useAuthStore from "../../../store/client/user/useAuthStore";
 import logo from "../../../assets/images/logos.png";
 import SearchBarNavigation from "./components/searchBar";
 import CartsNavigationComponent from "./components/wishlist";
-import useCategoryStore from "../../../store/client/category/category";
+import HeadingInformation from "../../headingInfo";
 
 const ClientNavigation: React.FC = () => {
   const { isAuthenticated, user } = useAuthStore((state) => state);
-  const { categories } = useCategoryStore((state) => state);
 
   const navigate = useNavigate();
   return (
     <>
+      <HeadingInformation />
+
       <nav className="big_width">
         <div className="left">
           {/* logo */}

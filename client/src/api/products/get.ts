@@ -30,3 +30,25 @@ export const getSearchProducts = async ({
     throw new ResponseError(error.message, error);
   }
 };
+
+export const getAllProduct = async (): Promise<ProductsType> => {
+  try {
+    const response = await fetch(`${productBaseURL}api/v1/product`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+
+    if (result.status !== "success") {
+      throw new ResponseError(result.message, result);
+    }
+
+    return result;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    throw new ResponseError(error.message, error);
+  }
+};

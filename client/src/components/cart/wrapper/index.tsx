@@ -1,15 +1,19 @@
-import { faX } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { map } from "leaflet";
 import { useContext } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TriangleSVG from "../../assets/icons/triangle";
-import LocalContext from "../../hoc/localstore";
-import Wrapper from "../wrapper";
+import LocalContext from "../../../context/cart";
+import Wrapper from "../../wrapper";
+import TriangleSVG from "../../../assets/icons/triangle";
+import { ProductType } from "../../../types/product";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
-function CartWrapper({ close, visible, data }) {
+interface PropTypes {
+  close: () => void;
+  visible: boolean;
+  data: ProductType["data"][] | [];
+}
+
+const CartWrapper: React.FC<PropTypes> = ({ close, visible, data }) => {
   const navigate = useNavigate();
 
   const { removeCartLocal, increaseAmount, decreaseAmount, totalPrice } =
@@ -32,45 +36,39 @@ function CartWrapper({ close, visible, data }) {
         <div className="product_container">
           {data && data.length > 0 ? (
             data.map((product) => (
-              <div className="product_div" key={product.id}>
+              <div className="product_div" key={product?.id}>
                 <div
                   className="cancel"
                   onClick={() => {
-                    removeCartLocal(product.id);
+                    removeCartLocal(product?.id);
                   }}
                 >
                   <FontAwesomeIcon icon={faX} />
                 </div>
 
                 <div className="image">
-                  <img
-                    src={
-                      product.thumbnail &&
-                      import.meta.env.VITE_APP_BASE_URL + product.thumbnail
-                    }
-                    alt=""
-                  />
+                  <img src={product?.thumbnail?.url} alt="product" />
                 </div>
 
                 <div className="infos">
                   <div className="up">
-                    <p>{product.title && product.title}</p>
+                    <p>{product?.title && product.title}</p>
                   </div>
                   <div className="down">
                     <div className="left">
                       <button
                         className="but"
                         onClick={() => {
-                          decreaseAmount(product.id);
+                          decreaseAmount(product?.id);
                         }}
                       >
                         -
                       </button>
-                      <p>{product.amount && product.amount}</p>
+                      <p>{product?.amount && product.amount}</p>
                       <button
                         className="but"
                         onClick={() => {
-                          increaseAmount(product.id);
+                          increaseAmount(product?.id);
                         }}
                       >
                         +
@@ -79,12 +77,12 @@ function CartWrapper({ close, visible, data }) {
                     <div className="right">
                       {product.sale > 0 ? (
                         <p>
-                          {product.total_new_price ?? product.new_price}{" "}
+                          {product?.totalNewPrice ?? product.newPrice}{" "}
                           <span>$</span>
                         </p>
                       ) : (
                         <p>
-                          {product.total_price && product.total_price}{" "}
+                          {product?.totalPrice && product.totalPrice}{" "}
                           <span>$</span>
                         </p>
                       )}
@@ -115,6 +113,6 @@ function CartWrapper({ close, visible, data }) {
       </Wrapper>
     </>
   );
-}
+};
 
 export default CartWrapper;

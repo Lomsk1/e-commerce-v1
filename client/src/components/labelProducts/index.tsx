@@ -1,6 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  FontAwesomeIcon,
+  FontAwesomeIconProps,
+} from "@fortawesome/react-fontawesome";
+import { ReactNode } from "react";
 
-function LabelProducts(props) {
+interface PropTypes {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icons: FontAwesomeIconProps | any;
+  title: string;
+  butt?: boolean;
+  children: ReactNode;
+}
+
+const LabelProducts: React.FC<PropTypes> = (props) => {
   return (
     <>
       <div className="label_products">
@@ -16,6 +28,6 @@ function LabelProducts(props) {
       <hr className="hr" />
     </>
   );
-}
+};
 
 export default LabelProducts;

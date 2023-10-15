@@ -22,7 +22,10 @@ export interface ProductsType {
     separate: string;
     slug: string;
     description: string;
-    thumbnail: string;
+    thumbnail: {
+      public_id: string;
+      url: string;
+    };
     amount: number;
     new: boolean;
     price: number;
@@ -71,7 +74,10 @@ export interface ProductType {
     separate: string;
     slug: string;
     description: string;
-    thumbnail: string;
+    thumbnail: {
+      public_id: string;
+      url: string;
+    };
     amount: number;
     new: boolean;
     price: number;

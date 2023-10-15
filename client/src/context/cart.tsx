@@ -1,22 +1,22 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { ProductType } from "../types/product";
 
-const LocalContext = createContext<ContextType | null>(null);
+const LocalContext = createContext<LocalContextType>({} as LocalContextType);
 
-type ContextType = {
-  addCartLocal: (data: ProductType) => void;
+export type LocalContextType = {
+  addCartLocal: (data: ProductType["data"]) => void;
   removeCartLocal: (id: string) => void;
   increaseAmount: (id: string) => void;
   decreaseAmount: (id: string) => void;
   removeAllFromLocal: () => void;
   cartLengthLocal: number;
-  cartDataLocal: ProductType[];
+  cartDataLocal: ProductType["data"][];
   totalPrice: number;
 };
 
 export const LocalContextProvider = ({ children }: { children: ReactNode }) => {
   const [cartLocalStorageData, setCartLocalStorageData] = useState<
-    ProductType[] | []
+    ProductType["data"][] | []
   >(JSON.parse(localStorage.getItem("cart") || "[]"));
 
   useEffect(() => {
@@ -39,10 +39,8 @@ export const LocalContextProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [cartTiming]);
 
-  const cartAddLocalHandler = (data: ProductType) => {
-    const isExist = cartLocalStorageData
-      .map((id) => id.data.id)
-      .includes(data.data.id);
+  const cartAddLocalHandler = (data: ProductType["data"]) => {
+    const isExist = cartLocalStorageData.map((id) => id.id).includes(data.id);
 
     if (isExist) {
       return setCartLocalStorageData(cartLocalStorageData);
@@ -54,9 +52,7 @@ export const LocalContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromLocal = (id: string) => {
-    const deleteData = cartLocalStorageData.filter(
-      (data) => data.data.id != id
-    );
+    const deleteData = cartLocalStorageData.filter((data) => data.id != id);
     setCartLocalStorageData(deleteData);
     localStorage.setItem("cart", JSON.stringify(cartLocalStorageData));
 
@@ -72,12 +68,12 @@ export const LocalContextProvider = ({ children }: { children: ReactNode }) => {
 
   const increaseHandler = (id: string) => {
     const updateProduct = cartLocalStorageData.map((info) =>
-      info.data.id === id
+      info.id === id
         ? {
             ...info,
-            amount: info.data.amount + 1,
-            total_price: (info.data.amount + 1) * info.data.price,
-            total_new_price: (info.data.amount + 1) * info.data.newPrice,
+            amount: info.amount + 1,
+            totalPrice: (info.amount + 1) * info.price,
+            totalNewPrice: (info.amount + 1) * info.newPrice,
           }
         : info
     );
@@ -88,22 +84,22 @@ export const LocalContextProvider = ({ children }: { children: ReactNode }) => {
 
   const decreaseHandler = (id: string) => {
     const updateTodo = cartLocalStorageData.map((todo) => {
-      if (todo.data.amount <= 1) {
-        return todo.data.id === id
+      if (todo.amount <= 1) {
+        return todo.id === id
           ? {
               ...todo,
-              amount: (todo.data.amount = 1),
-              total_price: todo.data.price,
-              total_new_price: todo.data.newPrice,
+              amount: (todo.amount = 1),
+              totalPrice: todo.price,
+              totalNewPrice: todo.newPrice,
             }
           : todo;
       } else {
-        return todo.data.id === id
+        return todo.id === id
           ? {
               ...todo,
-              amount: todo.data.amount - 1,
-              total_price: (todo.data.amount - 1) * todo.data.price,
-              total_new_price: (todo.data.amount - 1) * todo.data.newPrice,
+              amount: todo.amount - 1,
+              totalPrice: (todo.amount - 1) * todo.price,
+              totalNewPrice: (todo.amount - 1) * todo.newPrice,
             }
           : todo;
       }
@@ -114,12 +110,12 @@ export const LocalContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const newPrice = cartLocalStorageData
-      .filter((info) => info.data.sale > 0)
-      .map((info) => info.data.totalNewPrice);
+      .filter((info) => info.sale > 0)
+      .map((info) => info.totalNewPrice);
 
     const originalPrice = cartLocalStorageData
-      .filter((info) => info.data.sale === 0)
-      .map((info) => info.data.totalPrice);
+      .filter((info) => info.sale === 0)
+      .map((info) => info.totalPrice);
 
     if (newPrice.length > 0) {
       setTotalPriceNew(

@@ -10,7 +10,6 @@ export function setUserCookie(userToken: UserTypes["token"]): void {
 
 export function getUserCookie(): string | undefined {
   const userToken = Cookies.get(USER_COOKIE_KEY);
-
   if (!userToken) {
     return undefined;
   }

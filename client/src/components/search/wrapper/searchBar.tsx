@@ -28,12 +28,12 @@ const SearchBarWrapper: React.FC<SearchBarTypes> = ({
                   navigate(`each_products/${product?.title}/${product?.id}`);
                 }}
               >
-                <div className="image">
-                  {/* <img
-                    src={import.meta.env.VITE_APP_BASE_URL + product.thumbnail}
-                    alt=""
-                  /> */}
-                </div>
+                {product?.thumbnail?.url && (
+                  <div className="image">
+                    <img src={product.thumbnail.url} alt="image" />
+                  </div>
+                )}
+
                 <div className="title">
                   <p>{product?.title}</p>
                 </div>

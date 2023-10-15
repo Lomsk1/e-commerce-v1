@@ -73,23 +73,23 @@ function Navigation({ main_page }) {
   };
 
   ///// Cart
-  const [cartLong, setCartLong] = useState(false);
-  const [cartSmall, setCartSmall] = useState(false);
+  // const [cartLong, setCartLong] = useState(false);
+  // const [cartSmall, setCartSmall] = useState(false);
 
-  const [cartData, setCartData] = useState([]);
+  // const [cartData, setCartData] = useState([]);
 
-  const cartLongHandler = () => {
-    setCartLong(!cartLong);
-    setCartData(JSON.parse(localStorage.getItem("cart")));
-  };
+  // const cartLongHandler = () => {
+  //   setCartLong(!cartLong);
+  //   setCartData(JSON.parse(localStorage.getItem("cart")));
+  // };
 
-  useEffect(() => {
-    setCartData(JSON.parse(localStorage.getItem("cart")));
-  }, [localStorage.getItem("cart")]);
+  // useEffect(() => {
+  //   setCartData(JSON.parse(localStorage.getItem("cart")));
+  // }, [localStorage.getItem("cart")]);
 
-  const cartSmallHandler = () => {
-    setCartSmall(!cartSmall);
-  };
+  // const cartSmallHandler = () => {
+  //   setCartSmall(!cartSmall);
+  // };
 
   ///// Search Bar
   const [searchLong, setSearchLong] = useState(false);

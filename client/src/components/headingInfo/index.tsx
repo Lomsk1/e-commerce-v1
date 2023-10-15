@@ -10,10 +10,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Wrapper from "../wrapper";
 
-function HeadingInformation() {
+const HeadingInformation: React.FC = () => {
   const [open, setOpen] = useState(false);
 
-  const modeHandler = (e) => {
+  const modeHandler = () => {
     setOpen(!open);
   };
 
@@ -60,6 +60,6 @@ function HeadingInformation() {
       </section>
     </>
   );
-}
+};
 
 export default HeadingInformation;

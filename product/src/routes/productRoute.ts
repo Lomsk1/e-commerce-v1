@@ -25,7 +25,7 @@ productRoute
 productRoute
   .route("/:id")
   .get(getProduct)
-  .patch(protect, restrictTo("admin"), updateProduct)
+  .patch(protect, restrictTo("admin"), uploadPhoto, updateProduct)
   .delete(protect, restrictTo("admin"), deleteProduct);
 
 export default productRoute;

@@ -4,8 +4,9 @@ import mongoSanitize from "express-mongo-sanitize";
 import compression from "compression";
 import cors from "cors";
 import helmet from "helmet";
-import {errorController} from "./controllers/errors/errorController";
+import { errorController } from "./controllers/errors/errorController";
 import userRouter from "./routes/userRoute";
+import wishlistRoute from "./routes/wishlistRoute";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 /* Routes */
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/wishlist", wishlistRoute);
 
 app.use(compression());
 
