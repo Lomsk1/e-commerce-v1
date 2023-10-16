@@ -39,7 +39,7 @@ const HeadingInformation: React.FC = () => {
         <div className="right">
           <div className="infos">
             <FontAwesomeIcon icon={faMapLocation} />
-            <Link to={"/branches"}>Branches</Link>
+            <Link to={"/branch"}>Branches</Link>
           </div>
           <div className="mode" onClick={modeHandler}>
             <FontAwesomeIcon icon={faMoon} />

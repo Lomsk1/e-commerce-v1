@@ -5,28 +5,47 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-//   import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// import "leaflet/dist/leaflet.css";
+import { useQuery } from "@tanstack/react-query";
+import { getAllBranch } from "../../api/branch/get";
+import useBranchStore from "../../store/client/branch/branch";
 import { useEffect } from "react";
+import MapLeafletContainer from "../map";
 
 const Footer: React.FC = () => {
-  // const { branchData, isLoading, branchCoordData, branchCoordIsLoading } =
-  //   useSelector((state) => state.branch);
+  /* Query */
+  const branchQuery = useQuery({
+    queryKey: ["branch"],
+    queryFn: getAllBranch,
+    retry: 2,
+  });
+
+  /* Stores */
+  const { setBranch } = useBranchStore((state) => state);
+
+  /* Branch Data */
+  useEffect(() => {
+    if (branchQuery.isSuccess) setBranch(branchQuery.data);
+  }, [branchQuery.isSuccess, branchQuery.data, setBranch]);
+
+  /* Loading */
+  if (branchQuery.isLoading) {
+    return <div>Loading</div>;
+  }
 
   // const { isAuthenticated } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    let isSub = true;
+  // useEffect(() => {
+  //   let isSub = true;
 
-    if (isSub) {
-      // dispatch(getAllBranchData());
-      // dispatch(getBranchCoords());
-    }
+  //   if (isSub) {
+  //     // dispatch(getAllBranchData());
+  //     // dispatch(getBranchCoords());
+  //   }
 
-    return () => {
-      isSub = false;
-    };
-  }, []);
+  //   return () => {
+  //     isSub = false;
+  //   };
+  // }, []);
 
   return (
     <>
@@ -65,7 +84,7 @@ const Footer: React.FC = () => {
                 <Link to={"/about_us"}>About Us</Link>
               </li>
               <li>
-                <Link to={"/contact_us"}>Contact Us</Link>
+                <Link to={"/contact"}>Contact Us</Link>
               </li>
 
               <li>
@@ -116,35 +135,9 @@ const Footer: React.FC = () => {
               <h1>Branches</h1>
             </div>
             <div className="map_cont">
-              {/* {!branchCoordIsLoading ? (
-                  <MapContainer
-                    center={[
-                      branchCoordData[0].lat && branchCoordData[0].lat,
-                      branchCoordData[0].long && branchCoordData[0].long,
-                    ]}
-                    zoom={10}
-                    style={{ height: "100%", width: "100%" }}
-                  >
-                    <TileLayer
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    {!branchCoordIsLoading &&
-                      branchCoordData.map((address) => (
-                        <Marker
-                          position={[
-                            address.lat && address.lat,
-                            address.long && address.long,
-                          ]}
-                          key={address.id}
-                        >
-                          <Popup>Branches</Popup>
-                        </Marker>
-                      ))}
-                  </MapContainer>
-                ) : (
-                  <div>Loading...</div>
-                )} */}
+              {branchQuery.isSuccess && (
+                <MapLeafletContainer branchData={branchQuery.data} />
+              )}
             </div>
           </div>
         </div>
