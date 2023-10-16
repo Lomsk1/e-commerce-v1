@@ -5,8 +5,14 @@ import mongoose, { Document, Model } from "mongoose";
 interface BrandAttrs {
   name: string;
   description: string;
-  thumbnail: string;
-  image: string;
+  thumbnail: {
+    public_id: string;
+    url: string;
+  };
+  image: {
+    public_id: string;
+    url: string;
+  };
 
   brandCategory: {
     name: string;
@@ -27,8 +33,8 @@ interface BrandModel extends Model<BrandDoc> {
 export interface BrandDoc extends Document {
   name: string;
   description: string;
-  thumbnail: string;
-  image: string;
+  thumbnail: { public_id: string; url: string };
+  image: { public_id: string; url: string };
   brandCategory: {
     name: string;
     products: {
@@ -45,8 +51,14 @@ const brandSchema = new mongoose.Schema<BrandAttrs>(
       unique: true,
     },
     description: String,
-    thumbnail: String,
-    image: String,
+    thumbnail: {
+      public_id: String,
+      url: String,
+    },
+    image: {
+      public_id: String,
+      url: String,
+    },
 
     brandCategory: [
       {

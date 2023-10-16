@@ -9,7 +9,7 @@ interface PropTypes {
   icons: FontAwesomeIconProps | any;
   title: string;
   butt?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const LabelProducts: React.FC<PropTypes> = (props) => {

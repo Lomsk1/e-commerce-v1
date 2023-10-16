@@ -9,6 +9,7 @@ import useCategoryStore from "../../store/client/category/category";
 import { getWishlistByUser } from "../../api/wishlist/get";
 import useWishlistStore from "../../store/client/wishlist/wishlist";
 import { getUserCookie } from "../../helpers/user";
+import Footer from "../../components/footer";
 
 const RootLayout: React.FC = () => {
   /* State */
@@ -77,6 +78,8 @@ const RootLayout: React.FC = () => {
       <ClientNavigation />
 
       <Outlet />
+
+      <Footer />
     </>
   );
 };

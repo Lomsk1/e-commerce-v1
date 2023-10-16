@@ -5,25 +5,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+//   import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllBranchData, getBranchCoords } from "../../API/branch/action";
 
-function Footer() {
-  const dispatch = useDispatch();
-  const { branchData, isLoading, branchCoordData, branchCoordIsLoading } =
-    useSelector((state) => state.branch);
+const Footer: React.FC = () => {
+  // const { branchData, isLoading, branchCoordData, branchCoordIsLoading } =
+  //   useSelector((state) => state.branch);
 
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  // const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     let isSub = true;
 
     if (isSub) {
-      dispatch(getAllBranchData());
-      dispatch(getBranchCoords());
+      // dispatch(getAllBranchData());
+      // dispatch(getBranchCoords());
     }
 
     return () => {
@@ -89,21 +86,21 @@ function Footer() {
             </div>
             <ul>
               <li>
-                {isAuthenticated ? (
-                  <Link to={"/costumer/info"}>My Account</Link>
-                ) : (
-                  <Link to={"/log_in"}>My Account</Link>
-                )}
+                {/* {isAuthenticated ? (
+                    <Link to={"/costumer/info"}>My Account</Link>
+                  ) : (
+                    <Link to={"/log_in"}>My Account</Link>
+                  )} */}
               </li>
               <li>
                 <Link to={"/cart_main_page"}>View Cart</Link>
               </li>
               <li>
-                {isAuthenticated ? (
-                  <Link to={"/wishlist_main_page"}>Wishlist</Link>
-                ) : (
-                  <Link to={"/log_in"}>Wishlist</Link>
-                )}
+                {/* {isAuthenticated ? (
+                    <Link to={"/wishlist_main_page"}>Wishlist</Link>
+                  ) : (
+                    <Link to={"/log_in"}>Wishlist</Link>
+                  )} */}
               </li>
               <li>
                 <Link to={"/"}>Track My Order</Link>
@@ -119,35 +116,35 @@ function Footer() {
               <h1>Branches</h1>
             </div>
             <div className="map_cont">
-              {!branchCoordIsLoading ? (
-                <MapContainer
-                  center={[
-                    branchCoordData[0].lat && branchCoordData[0].lat,
-                    branchCoordData[0].long && branchCoordData[0].long,
-                  ]}
-                  zoom={10}
-                  style={{ height: "100%", width: "100%" }}
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  {!branchCoordIsLoading &&
-                    branchCoordData.map((address) => (
-                      <Marker
-                        position={[
-                          address.lat && address.lat,
-                          address.long && address.long,
-                        ]}
-                        key={address.id}
-                      >
-                        <Popup>Branches</Popup>
-                      </Marker>
-                    ))}
-                </MapContainer>
-              ) : (
-                <div>Loading...</div>
-              )}
+              {/* {!branchCoordIsLoading ? (
+                  <MapContainer
+                    center={[
+                      branchCoordData[0].lat && branchCoordData[0].lat,
+                      branchCoordData[0].long && branchCoordData[0].long,
+                    ]}
+                    zoom={10}
+                    style={{ height: "100%", width: "100%" }}
+                  >
+                    <TileLayer
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    {!branchCoordIsLoading &&
+                      branchCoordData.map((address) => (
+                        <Marker
+                          position={[
+                            address.lat && address.lat,
+                            address.long && address.long,
+                          ]}
+                          key={address.id}
+                        >
+                          <Popup>Branches</Popup>
+                        </Marker>
+                      ))}
+                  </MapContainer>
+                ) : (
+                  <div>Loading...</div>
+                )} */}
             </div>
           </div>
         </div>
@@ -158,6 +155,6 @@ function Footer() {
       </section>
     </>
   );
-}
+};
 
 export default Footer;

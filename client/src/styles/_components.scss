@@ -842,18 +842,19 @@
   width: 90%;
   height: 5rem;
   min-height: 5rem;
-  background-color: transparent;
+  // background-color: transparent;
   margin: 0 auto;
   margin-top: 50px;
   outline: none;
-
+  overflow: none;
+  background-color: red;
   div {
     outline: none !important;
   }
   .contain {
     // width: 200px;
     height: 5rem;
-
+    z-index: 99;
     img {
       width: 98%;
       height: 100%;

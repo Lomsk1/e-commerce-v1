@@ -7,10 +7,16 @@ import { getAllProduct } from "../../api/products/get";
 import { useQuery } from "@tanstack/react-query";
 import useAuthStore from "../../store/client/user/useAuthStore";
 import useWishlistStore from "../../store/client/wishlist/wishlist";
-import { faCheck, faFire } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faFire,
+  faUserShield,
+} from "@fortawesome/free-solid-svg-icons";
 import { ProductsType } from "../../types/product";
 import HomeCategoryForm from "./components/category/form";
 import useHomeCategoryValueStore from "../../store/client/home/category";
+import BrandSlider from "../../components/brand/slide";
+import { getAllBrands } from "../../api/brand/get";
 
 const HomePage: React.FC = () => {
   /* Router */
@@ -43,6 +49,12 @@ const HomePage: React.FC = () => {
     queryKey: ["product"],
     queryFn: getAllProduct,
     retry: 3,
+  });
+
+  const brandQuery = useQuery({
+    queryKey: ["brand"],
+    queryFn: getAllBrands,
+    retry: 2,
   });
 
   /* UseEffect */
@@ -231,8 +243,9 @@ const HomePage: React.FC = () => {
         />
       )}
       {/* Brands */}
-      {/* <LabelProducts icons={faUserShield} title="Brands"></LabelProducts>
-      {!brandDataIsLoading && <BrandSlider />} */}
+      <LabelProducts icons={faUserShield} title="Brands" />
+      {brandQuery.isSuccess && <BrandSlider brandData={brandQuery.data} />}
+
       {/* Subscribe */}
       {/* <section className="sub_section">
         <div className="left">

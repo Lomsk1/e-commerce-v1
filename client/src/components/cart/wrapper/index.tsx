@@ -105,7 +105,7 @@ const CartWrapper: React.FC<PropTypes> = ({ close, visible, data }) => {
         <button
           className="button_cart"
           onClick={() => {
-            navigate("/cart_main_page");
+            navigate("/cart");
           }}
         >
           Your Cart
