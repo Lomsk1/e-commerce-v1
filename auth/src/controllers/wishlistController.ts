@@ -1,26 +1,43 @@
+import dotenv from "dotenv";
+import axios from "axios";
 import { NextFunction, Request, Response } from "express";
 import { catchAsync } from "../utils/catchAsync";
 import AppError from "../utils/appErrors";
 import Wishlist from "../models/wishlistModel";
+dotenv.config;
 
 export const getWishlistByUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.user;
 
-    const data = await Wishlist.find({ user: id });
+    const wishlistItems = await Wishlist.find({ user: id });
 
     // await Promise.all(
-    //   data.map(async (document) => {
+    //   wishlistItems .map(async (document) => {
     //     document.productPopulate();
     //   })
     // );
-    if (!data) {
+    if (!wishlistItems) {
       return next(new AppError("No document found with that ID", 404));
     }
+
+    // Extract the product IDs from the wishlist items
+    const productIds = wishlistItems.map((item) => item.product);
+
+    // Fetch product details separately
+    const productDetails = [];
+
+    for (const productId of productIds) {
+      const response = await axios.get(
+        `${process.env.PRODUCT_BASE_URL}api/v1/product/${productId}`
+      );
+      productDetails.push(response.data);
+    }
+
     res.status(200).json({
       status: "success",
-      result: data.length,
-      data,
+      result: wishlistItems.length,
+      data: { wishlistItems, productDetails },
     });
   }
 );

@@ -44,7 +44,7 @@ const ProductLongContainer: React.FC<PropTypes> = ({
 
   /* Product navigate */
   const enterProductHandler = () => {
-    navigate(`/each_products/${data.title}/${data.id}`);
+    navigate(`/product-detail/${data.title}/${data.id}`);
   };
 
   /* Query Mutation */
@@ -76,13 +76,15 @@ const ProductLongContainer: React.FC<PropTypes> = ({
   const wishAddHandler = (): void => {
     if (user && wishlist) {
       const isExist =
-        wishlist?.data.map((id) => id.user).includes(user.user.id) &&
-        wishlist.data.map((id) => id.product).includes(data.id);
+        wishlist?.data.wishlistItems
+          .map((id) => id.user)
+          .includes(user.user.id) &&
+        wishlist.data.wishlistItems.map((id) => id.product).includes(data.id);
 
       if (!isExist) {
         createWishlistMutation.mutate({ product: data.id });
       } else {
-        const wishlistId = wishlist.data.filter(
+        const wishlistId = wishlist.data.wishlistItems.filter(
           (wishlist) =>
             wishlist.user === user.user.id && wishlist.product === data.id
         )[0].id;
@@ -137,7 +139,7 @@ const ProductLongContainer: React.FC<PropTypes> = ({
             >
               {isShownWish &&
                 wishlist?.status === "success" &&
-                (!wishlist.data
+                (!wishlist.data.wishlistItems
                   .map((data) => data.product)
                   .includes(data.id) ? (
                   <div>Add to Wishlist</div>
@@ -147,7 +149,9 @@ const ProductLongContainer: React.FC<PropTypes> = ({
 
               <FontAwesomeIcon
                 icon={
-                  wishlist?.data.map((data) => data.product).includes(data.id)
+                  wishlist?.data.wishlistItems
+                    .map((data) => data.product)
+                    .includes(data.id)
                     ? faHeartBroken
                     : faHeart
                 }

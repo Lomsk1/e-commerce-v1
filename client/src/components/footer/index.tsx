@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 {/* {isAuthenticated ? (
-                    <Link to={"/wishlist_main_page"}>Wishlist</Link>
+                    <Link to={"/wishlist"}>Wishlist</Link>
                   ) : (
                     <Link to={"/log_in"}>Wishlist</Link>
                   )} */}

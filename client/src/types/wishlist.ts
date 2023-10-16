@@ -1,9 +1,14 @@
+import { ProductType } from "./product";
+
 export interface WishlistType {
   status: string;
   result?: number;
   data: {
-    product: string;
-    user: string;
-    id: string;
-  }[];
+    wishlistItems: {
+      product: string;
+      user: string;
+      id: string;
+    }[];
+    productDetails: ProductType[];
+  };
 }

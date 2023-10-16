@@ -17,9 +17,9 @@ const WishlistForNavigation: React.FC = () => {
         className="main wish"
         onClick={() => {
           if (isAuthenticated) {
-            navigate("/wishlist_main_page");
+            navigate("/wishlist");
           } else {
-            navigate("/log_in");
+            navigate("/login");
           }
         }}
       >
