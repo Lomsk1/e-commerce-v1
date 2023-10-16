@@ -11,14 +11,16 @@ import HomePage from "./pages/home";
 import CartPage from "./pages/cart";
 import ContactUs from "./pages/contact";
 import BranchPage from "./pages/branch";
+import TermsAndPrivacy from "./pages/term&privacy";
 
 const clientRoute = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<HomePage />} />
       <Route path="cart" element={<CartPage />} />
-      <Route path="contact" element={<ContactUs />} />
       <Route path="branch" element={<BranchPage />} />
+      <Route path="contact" element={<ContactUs />} />
+      <Route path="terms-and-privacy" element={<TermsAndPrivacy />} />
     </Route>
   )
 );

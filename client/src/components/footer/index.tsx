@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
                 <Link to={"/"}>Privacy Policy</Link>
               </li>
               <li>
-                <Link to={"/terms_and_privacy"}>Terms & Conditions</Link>
+                <Link to={"/terms-and-privacy"}>Terms & Conditions</Link>
               </li>
             </ul>
           </div>
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
                   )} */}
               </li>
               <li>
-                <Link to={"/cart_main_page"}>View Cart</Link>
+                <Link to={"/cart"}>View Cart</Link>
               </li>
               <li>
                 {/* {isAuthenticated ? (
