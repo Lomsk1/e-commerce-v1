@@ -4,12 +4,25 @@ import { catchAsync } from "../../utils/catchAsync";
 import { NextFunction, Request, Response } from "express";
 import APIFeatures from "../../utils/apiFeatures";
 import AppError from "../../utils/appErrors";
+import Product from "../../models/productModel";
 
 // Default
 
 export const getAll = (Model: Model<Document>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    // let { minPrice, maxPrice } = req.query;
     let filter = {};
+
+    // if (minPrice || maxPrice)
+    //   filter = {
+    //     price: {
+    //       $gte: minPrice ? Number(minPrice) : 0,
+    //       $lte: maxPrice ? Number(maxPrice) : 9999999999,
+    //     },
+    //   };
+
+    // console.log(filter);
+
     if (req.params.productId) filter = { product: req.params.productId };
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()

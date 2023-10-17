@@ -4,6 +4,11 @@ export interface CategoriesTypes {
   data: {
     name: string;
     id: string;
+    brands: {
+      brandId: string;
+      brandName: string;
+      _id: string;
+    }[];
     products: {
       productId: string;
     }[];
@@ -15,6 +20,11 @@ export interface CategoryTypes {
   data: {
     name: string;
     id: string;
+    brands: {
+      brandId: string;
+      brandName: string;
+      _id: string;
+    }[];
     products: {
       productId: string;
     }[];

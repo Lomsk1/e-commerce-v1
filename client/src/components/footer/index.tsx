@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
 
             <ul>
               <li>
-                <Link to={"/about_us"}>About Us</Link>
+                <Link to={"/about-us"}>About Us</Link>
               </li>
               <li>
                 <Link to={"/contact"}>Contact Us</Link>

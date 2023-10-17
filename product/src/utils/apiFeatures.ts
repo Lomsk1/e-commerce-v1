@@ -18,9 +18,28 @@ class APIFeatures {
     const queryObj = { ...this.queryString };
     const excludedFields = ["page", "sort", "limit", "fields"];
     excludedFields.forEach((el) => delete queryObj[el]);
+    // if (queryObj.price) {
+    //   queryObj.price = {
+    //     $gte: Number(queryObj.price.gte),
+    //     $lte: Number(queryObj.price.lte),
+    //   };
+    //   console.log(queryObj.price);
+    // }
+    queryObj.price = {};
+    if (queryObj.priceMax || queryObj.priceMin) {
+      queryObj.price = {
+        $gte: Number(queryObj.priceMin ? queryObj.priceMin : 0),
+        $lte: Number(queryObj.priceMax ? queryObj.priceMax : 9999999),
+      };
+      queryObj.priceMin = undefined;
+      queryObj.priceMax = undefined;
+    } else {
+      queryObj.price = undefined;
+    }
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    this.query = this.query.find(JSON.parse(queryStr));
+    const fixedQueryStr = queryStr.replace(/\$\$/g, "$");
+    this.query = this.query.find(JSON.parse(fixedQueryStr));
     return this;
   }
   sort() {

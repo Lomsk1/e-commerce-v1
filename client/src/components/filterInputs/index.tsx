@@ -1,49 +1,38 @@
 import { faArrowTurnRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllBrandData } from "../../API/brand/action";
-import { setFilteredIs, setPriceData } from "../../redux/client/filter/slice";
+import { useEffect, useState } from "react";
+import { CategoryTypes } from "../../types/categoryTypes";
 
-function FilterInputs({
+interface PropTypes {
+  clearHandler: () => void;
+  priceHandler: (priceValue: { max: number; min: number }) => void;
+  setMaxMin: { max: number; min: number };
+  brandHandler: (id: string) => void;
+  categories: CategoryTypes["data"] | undefined;
+}
+
+const FilterInputs: React.FC<PropTypes> = ({
   priceHandler,
   setMaxMin,
-  importPriceData,
   brandHandler,
   clearHandler,
-}) {
-  // Redux
-  const dispatch = useDispatch();
+  categories,
+}) => {
+  /* States */
+  const [brandOpen, setBrandOpen] = useState<boolean>(false);
 
-  const { brandData, brandDataIsLoading } = useSelector((state) => state.brand);
-
-  // Open
-  const [priceOpen, setPriceOpen] = useState(false);
-  const [brandOpen, setBrandOpen] = useState(false);
-
-  // PRICE
+  const [priceOpen, setPriceOpen] = useState<boolean>(false);
   const [priceValue, setPriceValue] = useState({
-    first: setMaxMin.min,
-    second: setMaxMin.max,
+    max: 0,
+    min: 0,
   });
 
-  // FUNCTIONS
-
+  /* UseEffect */
   useEffect(() => {
-    let sub = true;
-    if (sub) {
-      dispatch(getAllBrandData());
-    }
-
-    return () => {
-      sub = false;
-    };
-  }, []);
+    setPriceValue(setMaxMin);
+  }, [setMaxMin]);
 
   const priceSubmitHandler = () => {
-    dispatch(setPriceData(priceValue));
-    dispatch(setFilteredIs(true));
     priceHandler(priceValue);
   };
 
@@ -69,16 +58,15 @@ function FilterInputs({
         <button
           onClick={() => {
             setPriceOpen(!priceOpen);
-            importPriceData();
           }}
         >
           <FontAwesomeIcon
             icon={faArrowTurnRight}
-            style={{ transform: priceOpen && "rotate(90deg)" }}
+            style={{ transform: priceOpen ? "rotate(90deg)" : "" }}
           />
         </button>
       </div>
-      {priceOpen && setMaxMin && (
+      {priceOpen && (
         <div className="price_box">
           <div className="range_box">
             <input
@@ -86,11 +74,11 @@ function FilterInputs({
               type="range"
               min={setMaxMin.min}
               max={setMaxMin.max}
-              defaultValue={setMaxMin.min}
+              defaultValue={priceValue.min}
               onChange={(e) => {
                 setPriceValue({
-                  first: e.target.value,
-                  second: priceValue.second,
+                  min: Number(e.target.value),
+                  max: priceValue.max,
                 });
               }}
             />
@@ -99,21 +87,21 @@ function FilterInputs({
               type="range"
               min={setMaxMin.min}
               max={setMaxMin.max}
-              defaultValue={setMaxMin.max}
+              defaultValue={priceValue.max}
               onChange={(e) => {
                 setPriceValue({
-                  first: priceValue.first,
-                  second: e.target.value,
+                  min: priceValue.min,
+                  max: Number(e.target.value),
                 });
               }}
             />
           </div>
           <div className="price_infos">
             <div>
-              <p>{priceValue.first ? priceValue.first : setMaxMin.min}</p>
+              <p>{priceValue.min ? priceValue.min : setMaxMin.min}</p>
             </div>
             <div>
-              <p>{priceValue.second}</p>
+              <p>{priceValue.max ? priceValue.max : setMaxMin.max}</p>
             </div>
             <button onClick={priceSubmitHandler}>Submit</button>
           </div>
@@ -130,7 +118,7 @@ function FilterInputs({
         >
           <FontAwesomeIcon
             icon={faArrowTurnRight}
-            style={{ transform: brandOpen && "rotate(90deg)" }}
+            style={{ transform: brandOpen ? "rotate(90deg)" : "" }}
           />
         </button>
       </div>
@@ -144,42 +132,32 @@ function FilterInputs({
                 id={"all"}
                 onChange={(e) => {
                   if (e.target.checked) {
-                    brandHandler(data.id);
+                    brandHandler("all");
                   }
                 }}
               />
               <label htmlFor={"all"}>All</label>
             </li>
-            {!brandDataIsLoading &&
-              brandData.map((data) => (
-                <li key={data.id}>
-                  <label htmlFor={data.name}>{data.name}</label>
-
-                  <ul key={data.id} className="child_ul">
-                    {data.category.length > 0 &&
-                      data.category.map((data) => (
-                        <li key={data.id}>
-                          <input
-                            type="radio"
-                            name={"brand"}
-                            id={data.name}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                brandHandler(data.id);
-                              }
-                            }}
-                          />
-                          <label htmlFor={data.name}>{data.name}</label>
-                        </li>
-                      ))}
-                  </ul>
-                </li>
-              ))}
+            {categories?.brands.map((data) => (
+              <li key={data._id}>
+                <input
+                  type="radio"
+                  name={"brand"}
+                  id={data._id}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      brandHandler(data.brandId);
+                    }
+                  }}
+                />
+                <label htmlFor={data._id}>{data.brandName}</label>
+              </li>
+            ))}
           </ul>
         </div>
       )}
     </>
   );
-}
+};
 
 export default FilterInputs;

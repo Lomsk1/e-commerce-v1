@@ -13,6 +13,7 @@ export interface brandType {
       url: string;
     };
     brandCategory: {
+      _id: string;
       name: string;
       products: {
         productId: string;
@@ -37,6 +38,7 @@ export interface brandsTypes {
       url: string;
     };
     brandCategory: {
+      _id: string;
       name: string;
       products: {
         productId: string;

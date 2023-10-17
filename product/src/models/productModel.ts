@@ -8,6 +8,7 @@ interface ProductAttrs {
     id: string;
     name: string;
   };
+  categoryFilter: string;
   branches: {
     branch: mongoose.Schema.Types.ObjectId;
     inStock: boolean;
@@ -63,6 +64,7 @@ export interface ProductDoc extends Document {
     id: string;
     name: string;
   };
+  categoryFilter: string;
   branches: {
     branch: mongoose.Schema.Types.ObjectId;
     inStock: boolean;
@@ -237,6 +239,9 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
         required: [true, "Please, add a category name"],
       },
     },
+    categoryFilter: {
+      type: String,
+    },
   },
   {
     toJSON: {
@@ -261,6 +266,7 @@ productSchema.pre(/^find/, function (next) {
 
 productSchema.pre("save", function (next) {
   this.slug = slugify(this.title, { lower: true });
+  this.categoryFilter = this.category.id;
   next();
 });
 

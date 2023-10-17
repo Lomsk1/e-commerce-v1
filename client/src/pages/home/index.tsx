@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
   /* Queries */
 
   const productQuery = useQuery({
-    queryKey: ["product"],
+    queryKey: ["products"],
     queryFn: getAllProduct,
     retry: 3,
   });

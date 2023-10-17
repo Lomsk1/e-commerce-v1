@@ -1,13 +1,6 @@
-import Footer from "../../components/footer";
-import HeadingInformation from "../../components/heading_info";
-import Navigation from "../../components/navigation";
-
-function AboutUs() {
+const AboutUs: React.FC = () => {
   return (
     <>
-      <HeadingInformation />
-      <Navigation />
-
       <section className="about_us_section">
         <div className="title">
           <h1>About Us</h1>
@@ -16,8 +9,8 @@ function AboutUs() {
 
         <div className="img_container">
           <img
-            src="https://www.governor.pa.gov/wp-content/uploads/2016/08/wine-store.jpg"
-            alt=""
+            src="https://images.pexels.com/photos/7070/space-desk-workspace-coworking.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="s"
           />
         </div>
 
@@ -98,10 +91,8 @@ function AboutUs() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
-}
+};
 
 export default AboutUs;

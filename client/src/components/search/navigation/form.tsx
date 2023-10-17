@@ -60,11 +60,7 @@ const NavigationSearchForm: React.FC = () => {
           id="category"
           onChange={(e) => {
             if (e.target.value) {
-              navigate(
-                `/filer_page/${e.target.value.split(",")[1]}/${
-                  e.target.value.split(",")[0]
-                }`
-              );
+              navigate(`/products-filter?categoryFilter=${e.target.value}`);
             }
           }}
           onClick={() => setSelectIsOpen(true)}
@@ -74,10 +70,7 @@ const NavigationSearchForm: React.FC = () => {
           </option>
           {categoriesStore?.status === "success" &&
             categoriesStore.data.map((category) => (
-              <option
-                key={category.id}
-                value={category.id && `${category.id},${category.name}`}
-              >
+              <option key={category.id} value={category.id}>
                 {category.name && category.name}
               </option>
             ))}

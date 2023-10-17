@@ -8,6 +8,10 @@ interface CategoryAttrs {
   products: {
     productId: string;
   }[];
+  brands: {
+    brandId: string;
+    brandName: string;
+  }[];
 }
 
 // An interface that describes the properties
@@ -23,6 +27,10 @@ export interface CategoryDoc extends Document {
   products: {
     productId: string;
   }[];
+  brands: {
+    brandId: string;
+    brandName: string;
+  }[];
 }
 
 const categorySchema = new mongoose.Schema<CategoryAttrs>(
@@ -37,6 +45,18 @@ const categorySchema = new mongoose.Schema<CategoryAttrs>(
         productId: {
           type: String,
           required: [true, "Please, add product Id"],
+        },
+      },
+    ],
+    brands: [
+      {
+        brandId: {
+          type: String,
+          required: [true, "Please, add brand Id"],
+        },
+        brandName: {
+          type: String,
+          required: [true, "please, add a brand name"],
         },
       },
     ],
