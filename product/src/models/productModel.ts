@@ -16,6 +16,7 @@ interface ProductAttrs {
   brand: {
     id: string;
     name: string;
+    image: string;
   };
   brandId: string;
 
@@ -48,6 +49,7 @@ interface ProductAttrs {
     specificationBasics: {
       name: string;
       middle: string;
+      top: boolean;
     }[];
   }[];
 }
@@ -73,6 +75,7 @@ export interface ProductDoc extends Document {
   brand: {
     id: string;
     name: string;
+    image: string;
   };
   brandId: string;
   title: string;
@@ -104,6 +107,7 @@ export interface ProductDoc extends Document {
     specificationBasics: {
       name: string;
       middle: string;
+      top: boolean;
     }[];
   }[];
 }
@@ -202,6 +206,10 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
               type: String,
               required: [true, "Please, add a middle in spec basic"],
             },
+            top: {
+              type: Boolean,
+              default: false,
+            },
           },
         ],
       },
@@ -229,6 +237,10 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
       name: {
         type: String,
         required: [true, "Please, add a brand name"],
+      },
+      image: {
+        type: String,
+        required: [true, "Please, add a brand image"],
       },
     },
     brandId: String,

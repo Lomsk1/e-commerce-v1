@@ -44,7 +44,7 @@ const ProductLongContainer: React.FC<PropTypes> = ({
 
   /* Product navigate */
   const enterProductHandler = () => {
-    navigate(`/product-detail/${data.title}/${data.id}`);
+    navigate(`/product/${data.id}/${data.title}`);
   };
 
   /* Query Mutation */

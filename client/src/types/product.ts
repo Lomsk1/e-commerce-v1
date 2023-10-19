@@ -15,6 +15,7 @@ export interface ProductsType {
     brand: {
       id: string;
       name: string;
+      image: string;
     };
 
     id: string;
@@ -44,8 +45,10 @@ export interface ProductsType {
 
     specifications: {
       category: string;
+      _id: string;
       specificationBasics: {
         name: string;
+        top: boolean;
         middle: string;
         _id: string;
       }[];
@@ -67,6 +70,7 @@ export interface ProductType {
     brand: {
       id: string;
       name: string;
+      image: string;
     };
 
     id: string;
@@ -96,8 +100,10 @@ export interface ProductType {
 
     specifications: {
       category: string;
+      _id: string;
       specificationBasics: {
         name: string;
+        top: boolean;
         middle: string;
         _id: string;
       }[];

@@ -17,11 +17,13 @@ import AboutUs from "./pages/about";
 import FilterPage from "./pages/filter";
 import BrandPage from "./pages/brand";
 import BrandEachPage from "./pages/brandEach";
+import EachProduct from "./pages/product";
 
 const clientRoute = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<HomePage />} />
+      <Route path="product/:id/:name" element={<EachProduct />} />
       <Route path="cart" element={<CartPage />} />
       <Route path="wishlist" element={<WishlistPage />} />
       <Route path="branch" element={<BranchPage />} />
