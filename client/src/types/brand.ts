@@ -15,6 +15,7 @@ export interface brandType {
     brandCategory: {
       _id: string;
       name: string;
+      categoryId: string;
       products: {
         productId: string;
       }[];
@@ -40,6 +41,7 @@ export interface brandsTypes {
     brandCategory: {
       _id: string;
       name: string;
+      categoryId: string;
       products: {
         productId: string;
       }[];

@@ -15,6 +15,8 @@ import TermsAndPrivacy from "./pages/term&privacy";
 import WishlistPage from "./pages/wishlist";
 import AboutUs from "./pages/about";
 import FilterPage from "./pages/filter";
+import BrandPage from "./pages/brand";
+import BrandEachPage from "./pages/brandEach";
 
 const clientRoute = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +26,8 @@ const clientRoute = createBrowserRouter(
       <Route path="wishlist" element={<WishlistPage />} />
       <Route path="branch" element={<BranchPage />} />
       <Route path="products-filter" element={<FilterPage />} />
+      <Route path="brand" element={<BrandPage />} />
+      <Route path="brand/:name/:id" element={<BrandEachPage />} />
       <Route path="contact" element={<ContactUs />} />
       <Route path="terms-and-privacy" element={<TermsAndPrivacy />} />
       <Route path="about-us" element={<AboutUs />} />

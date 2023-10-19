@@ -16,6 +16,7 @@ interface BrandAttrs {
 
   brandCategory: {
     name: string;
+    categoryId: string;
     products: {
       productId: string;
     }[];
@@ -37,6 +38,7 @@ export interface BrandDoc extends Document {
   image: { public_id: string; url: string };
   brandCategory: {
     name: string;
+    categoryId: string;
     products: {
       productId: string;
     }[];
@@ -64,7 +66,11 @@ const brandSchema = new mongoose.Schema<BrandAttrs>(
       {
         name: {
           type: String,
-          required: [true, "Please, add a name"],
+          required: [true, "Please, add the category name"],
+        },
+        categoryId: {
+          type: String,
+          required: [true, "Please, add the category id"],
         },
         products: [
           {

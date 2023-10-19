@@ -52,7 +52,7 @@ const HomePage: React.FC = () => {
   });
 
   const brandQuery = useQuery({
-    queryKey: ["brand"],
+    queryKey: ["brands"],
     queryFn: getAllBrands,
     retry: 2,
   });

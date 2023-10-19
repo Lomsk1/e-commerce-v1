@@ -17,6 +17,7 @@ interface ProductAttrs {
     id: string;
     name: string;
   };
+  brandId: string;
 
   title: string;
   separate: string;
@@ -73,6 +74,7 @@ export interface ProductDoc extends Document {
     id: string;
     name: string;
   };
+  brandId: string;
   title: string;
   separate: string;
   slug: string;
@@ -229,6 +231,7 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
         required: [true, "Please, add a brand name"],
       },
     },
+    brandId: String,
     category: {
       id: {
         type: String,
