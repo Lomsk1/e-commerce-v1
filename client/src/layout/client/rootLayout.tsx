@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import ClientNavigation from "../../components/navigation/client";
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "../../api/user/user";
@@ -11,8 +11,12 @@ import useWishlistStore from "../../store/client/wishlist/wishlist";
 import { getUserCookie } from "../../helpers/user";
 import Footer from "../../components/footer";
 import { ScrollRestoration } from "react-router-dom";
+import AdminNavigation from "../../components/navigation/admin";
 
 const RootLayout: React.FC = () => {
+  /* Routes */
+  const location = useLocation();
+
   /* State */
   const [isUser, setIsUser] = useState<boolean>(false);
 
@@ -37,7 +41,7 @@ const RootLayout: React.FC = () => {
   const wishlistQuery = useQuery({
     queryKey: ["wishlist"],
     queryFn: getWishlistByUser,
-    enabled: !!userQuery.data,
+    enabled: userQuery.data?.status === "success",
     retry: 1,
   });
 
@@ -48,7 +52,7 @@ const RootLayout: React.FC = () => {
 
   /* User Query Functions */
   if (userQuery.isSuccess) {
-    userState(userQuery.data);
+    if (userQuery.data?.status === "success") userState(userQuery.data);
   }
 
   if (categoryQuery.isLoading) {
@@ -59,7 +63,11 @@ const RootLayout: React.FC = () => {
     return <h1>Loading... </h1>;
   }
 
-  if (isUser && wishlistQuery.isLoading) {
+  if (
+    isUser &&
+    userQuery.data?.status === "success" &&
+    wishlistQuery.isLoading
+  ) {
     return <h1>Loading... </h1>;
   }
   /* Category Query Functions */
@@ -76,11 +84,17 @@ const RootLayout: React.FC = () => {
   // }
   return (
     <>
-      <ClientNavigation />
+      {!location.pathname.startsWith("/admin") ? (
+        <>
+          <ClientNavigation />
+          <Outlet />
+          <Footer />
+        </>
+      ) : (
+        <AdminNavigation />
+      )}
 
-      <Outlet />
-
-      <Footer />
+      {/* {!location.pathname.startsWith("/admin") && <Footer />} */}
 
       <ScrollRestoration />
     </>

@@ -8,13 +8,16 @@ interface BranchAttrs {
   city: string;
   address: string;
   phone: string;
+  createdAt: Date;
   branchCoord: {
     lat: string;
     long: string;
+    id: string;
   };
   branchWorkingHours: {
     weekDay: string;
     hour: string;
+    id: string;
   }[];
 }
 
@@ -32,13 +35,16 @@ export interface BranchDoc extends Document {
   city: string;
   address: string;
   phone: string;
+  createdAt: Date;
   branchCoord: {
     lat: string;
     long: string;
+    id: string;
   };
   branchWorkingHours: {
     weekDay: string;
     hour: string;
+    id: string;
   }[];
 }
 
@@ -70,6 +76,10 @@ const branchSchema = new mongoose.Schema<BranchAttrs>(
         required: [true, "A coord of branch must have a long"],
       },
     },
+    createdAt: {
+      type: Date,
+      default: new Date(),
+    },
     branchWorkingHours: [
       {
         weekDay: {
@@ -80,12 +90,13 @@ const branchSchema = new mongoose.Schema<BranchAttrs>(
           type: String,
           required: [true, "Please, add working hour"],
         },
+        id: String,
       },
     ],
   },
   {
     toJSON: {
-      transform(doc, ret) {
+      transform(_doc, ret) {
         ret.id = ret._id;
         delete ret._id;
       },
@@ -103,6 +114,7 @@ branchSchema.statics.build = (attrs: BranchAttrs) => {
     branchCoord: {
       lat: attrs.branchCoord.lat,
       long: attrs.branchCoord.long,
+      id: attrs.branchCoord.id,
     },
     branchWorkingHours: attrs.branchWorkingHours,
   });

@@ -19,13 +19,15 @@ const SearchBarWrapper: React.FC<SearchBarTypes> = ({
       <Wrapper className="search_bar_container" close={close} visible={visible}>
         <div className="product_container">
           {/* Products */}
+
           {products?.status === "success" &&
             products.data.map((product) => (
               <div
                 className="product_"
                 key={product?.id}
                 onClick={() => {
-                  navigate(`each_products/${product?.title}/${product?.id}`);
+                  navigate(`product/${product?.id}/${product?.title}`);
+                  close();
                 }}
               >
                 {product?.thumbnail?.url && (

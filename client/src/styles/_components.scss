@@ -93,6 +93,8 @@
         background-color: $red-buttons;
         width: 7rem;
         color: $dark-text-white;
+        border: none;
+        cursor: pointer;
       }
     }
   }
@@ -106,6 +108,8 @@
     margin-left: 5px;
     color: $dark-txt-grey;
     transform: translate(50px, -55px);
+    cursor: pointer;
+    border: none;
   }
   hr {
     width: 80%;
@@ -132,9 +136,13 @@
     border-radius: 10px;
     background-color: #3372ea;
     overflow: hidden;
+    cursor: pointer;
+    border: none;
+    box-sizing: border-box;
     &:last-child {
-      background-color: blueviolet;
       margin-top: 10px;
+      background-color: #723d46;
+
       div {
         background-color: #723d46;
       }
@@ -147,6 +155,7 @@
       height: 100%;
       @include flexCenter(row);
       background-color: #2867e0;
+      box-sizing: border-box;
       svg {
         color: white !important;
       }
@@ -155,6 +164,7 @@
       width: 70%;
       height: 100%;
       @include flexCenter(row);
+      box-sizing: border-box;
       p {
         margin: 0;
         color: $dark-text-white;
@@ -178,6 +188,8 @@
   padding-bottom: 15px;
   border-radius: 10px;
   z-index: 30;
+  gap: 10px;
+  box-sizing: border-box;
   .error_div {
     margin-top: 1.5em;
     @include fontMediumRoboto;
@@ -299,6 +311,8 @@
               width: 30%;
               height: 100%;
               background-color: transparent;
+              border: none;
+              cursor: pointer;
             }
             p {
               width: 40%;
@@ -353,9 +367,16 @@
     border-radius: 7px;
     color: $dark-text-white;
     @include fontMediumRoboto;
+    cursor: pointer;
+    transition: 500ms;
+    border: none;
+    &:hover {
+      background-color: $dark-text-red;
+    }
   }
 }
-.search_bar_container {
+.search_bar_container,
+.search_bar_container_mobile {
   width: 600px;
   height: 400px;
   background-color: $dark-mode-grey;
@@ -468,55 +489,78 @@
   margin: 0 auto;
   margin-top: 50px;
   display: flex;
-  justify-content: baseline;
-
-  .icon {
-    width: 7%;
-    height: 100%;
-    background-color: transparent;
-    @include flexCenter(row);
-    svg {
-      width: 50%;
-      height: 50%;
-      color: $dark-txt-grey;
-      @media (max-width: 500px) {
-        width: 70%;
-        height: 70%;
-      }
-    }
+  justify-content: space-between;
+  @media (max-width: 540px) {
+    @include flexCenter(column);
+    height: fit-content;
+    gap: 5px;
   }
-  .title {
-    width: 73%;
+  .text {
     height: 100%;
-    background-color: transparent;
+    width: max-content;
     display: flex;
-    align-items: center;
-    @media (max-width: 500px) {
-      width: 63%;
+    gap: 20px;
+    @media (max-width: 750px) {
+      gap: 5px;
     }
-    h1 {
-      @include fontBoldRoboto;
-      font-size: 1.8rem;
-      color: $dark-text-white;
-      @media (max-width: 500px) {
-        font-size: 1.5rem;
-        margin-left: 1em;
+    .icon {
+      width: max-content;
+      height: 100%;
+      background-color: transparent;
+      @include flexCenter(row);
+      svg {
+        width: 1.8rem;
+        height: 1.8rem;
+        color: $dark-txt-grey;
+        @media (max-width: 750px) {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+    .title {
+      width: max-content;
+      height: 100%;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      h1 {
+        @include fontBoldRoboto;
+        font-size: 1.8rem;
+        color: $dark-text-white;
+        margin: 0;
+        @media (max-width: 750px) {
+          font-size: 1.2rem;
+          margin-left: 0.5em;
+        }
       }
     }
   }
+
   .button {
-    width: 20%;
+    width: fit-content;
     height: 100%;
     background-color: transparent;
     @include flexCenter(row);
     @include fontMediumRoboto;
     color: $dark-text-white;
-    @media (max-width: 500px) {
-      width: 30%;
+    button {
+      @include flexCenter(column);
+      padding: 20px 40px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 700ms;
+      text-align: center;
+      color: $dark-text-white;
+      &:hover {
+        background-color: #5c2f37;
+        transition: 700ms;
+      }
     }
   }
+
   form {
-    width: max-content;
+    width: fit-content;
     height: 100%;
     @include flexCenter(row);
     div {
@@ -560,23 +604,19 @@
 }
 
 .product {
-  width: 220px;
-  // min-height: 10rem;
   height: max-content;
   background-color: $dark-items-bg;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  padding-bottom: 20px;
-  @media (max-width: 620px) {
-    width: 200px;
-  }
-  @media (max-width: 580px) {
-    width: 100%;
-  }
+  padding-bottom: 10px;
   .img {
     width: 100%;
-    height: 12rem;
+    aspect-ratio: 1/0.9;
+    @media (max-width: 470px) {
+      aspect-ratio: 1/0.5;
+      @include flexCenter(row);
+    }
     background-color: transparent;
     overflow: hidden;
     border-radius: 10px;
@@ -586,6 +626,10 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      @media (max-width: 470px) {
+        object-fit: cover;
+        width: 80%;
+      }
     }
     .all {
       position: absolute;
@@ -594,22 +638,21 @@
       @include flexCenter(row);
       justify-content: flex-end;
       top: 10px;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       @include fontRegularRoboto;
       color: $dark-text-white;
-      background-color: transparent;
       right: 10px;
     }
     .new {
-      width: 70px;
+      padding: 0 10px;
       height: 100%;
       background-color: $dark-text-red;
-      // right: 10px;
       @include flexCenter(row);
       margin-left: 0.5em;
+      border: 2px solid $dark-text-red;
     }
     .sale {
-      width: 70px;
+      padding: 0 10px;
       height: 100%;
       background-color: transparent;
       border: 2px solid $dark-text-red;
@@ -621,23 +664,29 @@
   }
   .category {
     width: 100%;
-    height: max-content;
+    height: fit-content;
     background-color: transparent;
     @include flexCenter(row);
-    @include fontRegularRoboto;
-    color: $dark-txt-grey;
+    padding: 5px 0;
+    text-align: center;
+    p {
+      @include fontRegularRoboto;
+      color: $dark-txt-grey;
+      margin: 0;
+    }
   }
   .title {
     width: 100%;
-    height: auto;
-    min-height: 80px;
+    height: fit-content;
     background-color: transparent;
     @include flexCenter(row);
-    @include fontRegularRoboto;
-    color: $dark-text-white;
+    padding: 5px 0;
     text-align: center;
-    @media (max-width: 1010px) {
-      min-height: 3rem;
+    p {
+      @include fontRegularRoboto;
+      color: $dark-text-white;
+      margin: 0;
+      letter-spacing: 1px;
     }
   }
   .price {
@@ -645,15 +694,18 @@
     height: max-content;
     background-color: transparent;
     @include flexCenter(row);
-    @include fontBoldRoboto;
-    color: $dark-icons-red;
-
-    span {
-      color: $dark-txt-grey;
-      font-size: 0.8rem;
-      text-decoration: line-through;
-      margin-left: 1em;
-      @include fontRegularRoboto;
+    padding: 5px 0;
+    p {
+      margin: 0;
+      @include fontBoldRoboto;
+      color: $dark-icons-red;
+      span {
+        color: $dark-txt-grey;
+        font-size: 0.8rem;
+        text-decoration: line-through;
+        margin-left: 1em;
+        @include fontRegularRoboto;
+      }
     }
   }
   hr {
@@ -731,19 +783,16 @@
   margin: 0 auto;
   margin-top: 30px;
   background-color: transparent;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
   overflow-y: scroll;
   @include scroll;
-  @media (max-width: 1700px) {
-    justify-content: start;
-  }
-  @media (max-width: 700px) {
+  @media (max-width: 520px) {
     width: 100%;
   }
-  @media (max-width: 580px) {
-    width: 80%;
+  @media (max-width: 470px) {
+    grid-template-columns: repeat(auto-fill, 1fr);
   }
 }
 
@@ -986,15 +1035,22 @@
     background-color: transparent;
     display: flex;
     flex-direction: column;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    gap: 10px;
     li {
       @include fontMediumRoboto;
-      margin-top: 1em;
-      color: $link-txt-blue;
-      transition: 500ms;
       width: max-content;
-      &:hover {
+      a {
+        text-decoration: none;
+        color: $link-txt-blue;
         transition: 500ms;
-        color: #2cda9d;
+        margin: 0;
+        &:hover {
+          transition: 500ms;
+          color: #2cda9d;
+        }
       }
     }
   }
@@ -1008,6 +1064,8 @@
     color: $dark-text-white;
     transition: 500ms;
     @include fontMediumRoboto;
+    border: none;
+    cursor: pointer;
     &:hover {
       transition: 500ms;
       background-color: #bf0603;

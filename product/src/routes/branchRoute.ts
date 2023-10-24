@@ -1,7 +1,10 @@
 import express from "express";
 import {
   createBranch,
+  createBranchWorkingTime,
   deleteBranch,
+  deleteBranchWorkingTime,
+  editBranchWorkingTime,
   updateBranch,
 } from "../controllers/branchController";
 
@@ -19,5 +22,12 @@ branchRoute
   //   .get(getProduct)
   .patch(updateBranch)
   .delete(deleteBranch);
+
+branchRoute.route("/:id/workingTime").patch(createBranchWorkingTime);
+
+branchRoute
+  .route("/:id/workingTime/:workingTimeId")
+  .patch(deleteBranchWorkingTime)
+  .put(editBranchWorkingTime);
 
 export default branchRoute;

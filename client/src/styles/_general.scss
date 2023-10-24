@@ -129,7 +129,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  box-sizing: border-box;
   @media (max-width: 1270px) {
     display: none;
   }
@@ -158,10 +158,10 @@
     height: 50%;
     background-color: transparent;
     display: flex;
-    // overflow: hidden;
     border-radius: 15px;
     margin-left: 2em;
     position: relative;
+    box-sizing: border-box;
     form {
       width: 100%;
       height: 100%;
@@ -178,6 +178,8 @@
         cursor: pointer;
         @include fontMediumRoboto;
         padding-left: 1em;
+        box-sizing: border-box;
+        border: none;
       }
       input {
         width: 50%;
@@ -186,6 +188,7 @@
         border: none;
         @include fontMediumRoboto;
         padding: 1em;
+        box-sizing: border-box;
       }
       button {
         width: 20%;
@@ -194,6 +197,9 @@
         @include fontMediumRoboto;
         padding-top: 1px;
         color: $dark-text-white;
+        border: none;
+        box-sizing: border-box;
+        cursor: pointer;
       }
     }
   }
@@ -201,7 +207,6 @@
     @include flexCenter(row);
     cursor: pointer;
     position: relative;
-
     p {
       margin: 0;
       color: $dark-text-white;
@@ -469,29 +474,27 @@
   background-color: $dark-mb-bg;
   z-index: 11;
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   flex-direction: column;
   align-items: center;
   @media (min-width: 1270px) {
     display: none !important;
   }
-
   .little {
     form {
       width: 100%;
       height: 100%;
-      justify-content: space-between !important;
       @include flexCenter(row);
+      gap: 20px;
     }
   }
-
   .search_bar {
     width: 80%;
     height: 65px !important;
     background-color: transparent;
     margin-top: 60px;
-    justify-content: space-between !important;
+
     @include flexCenter(row);
     @media (max-width: 600px) {
       margin-top: 95px;
@@ -506,12 +509,14 @@
       outline: none;
       border-radius: 10px;
       @include fontMediumRoboto;
+      border: 1px solid white;
     }
     button {
       width: 40px;
       height: 60%;
       background-color: transparent;
       cursor: pointer;
+      border: none;
       svg {
         color: $dark-searchBar-red;
         width: 70%;
@@ -528,29 +533,36 @@
     flex-direction: column;
     // overflow: hidden;
     border-radius: 10px;
+    box-sizing: border-box;
+    padding: 10px;
     @media (max-width: 1270px) {
       position: relative;
     }
-
     .account_container {
       width: 100%;
       height: 3rem;
       background-color: transparent;
       display: flex;
       justify-content: space-evenly;
-
+      box-sizing: border-box;
+      @media (max-width: 500px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        height: fit-content;
+      }
+      .profile_containers {
+        @media (max-width: 500px) {
+          left: 0;
+          top: 30px;
+        }
+      }
       .account {
         width: 150px;
         height: fit-content;
         @include flexCenter(row);
         background-color: transparent;
         position: relative;
-        // margin: 0 auto;
-        &:last-child {
-          @media (max-width: 400px) {
-            align-self: flex-end;
-          }
-        }
 
         p {
           margin: 0;
@@ -573,14 +585,17 @@
       width: 100%;
       height: 22rem;
       background-color: transparent;
-
+      box-sizing: border-box;
+      padding: 0;
       ul {
+        box-sizing: border-box;
+        padding: 0;
         width: 100%;
         height: 100%;
         background-color: transparent;
         display: flex;
         flex-direction: column;
-        overflow-y: scroll;
+        overflow-y: auto;
         &::-webkit-scrollbar {
           width: 20px;
         }
@@ -678,10 +693,15 @@
         width: 48% !important;
       }
 
-      p {
+      p,
+      a {
         margin-top: 10px;
         @include fontRegularRoboto;
         color: $dark-text-white;
+        text-decoration: none;
+        @media (max-width: 700px) {
+          font-size: 0.85rem;
+        }
         svg {
           margin-right: 15px;
           color: $dark-icons-red;
@@ -693,6 +713,9 @@
       ul {
         margin-top: 10px;
         color: $dark-text-white;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
         li {
           a {
             transition: 700ms;
@@ -716,6 +739,9 @@
           font-size: 1.5rem;
           margin-bottom: 1em;
           width: fit-content;
+          @media (max-width: 700px) {
+            font-size: 1.2rem;
+          }
         }
       }
     }
@@ -747,8 +773,7 @@
     width: 85%;
     min-height: 5rem;
     background-color: transparent;
-    display: flex;
-    align-items: center;
+    @include flexCenter(row);
     @media (max-width: 630px) {
       width: 95%;
       text-align: center;
@@ -756,6 +781,10 @@
     p {
       @include fontRegularRoboto;
       color: $dark-arrow-white;
+      text-align: center;
+      @media (max-width: 700px) {
+        font-size: 0.85rem;
+      }
     }
   }
 }

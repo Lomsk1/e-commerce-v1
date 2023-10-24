@@ -16,6 +16,8 @@
     min-width: 120px;
     position: sticky;
     top: 0;
+    box-sizing: border-box;
+
     @media (max-width: 1100px) {
       width: 100%;
       min-height: 20px;
@@ -28,11 +30,16 @@
       height: max-content;
       min-height: 100px;
       background-color: $dark-items-bg;
+      margin: 0;
       margin: 0 auto;
       margin-top: 50px;
       min-width: 120px;
       border-radius: 15px;
-
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       @media (max-width: 1100px) {
         position: static;
         display: flex;
@@ -45,17 +52,25 @@
       li {
         width: 100%;
         height: max-content;
-        min-height: 3rem;
         background-color: transparent;
         margin-top: 20px;
         text-align: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        box-sizing: border-box;
         @include fontMediumRoboto;
         color: $link-txt-blue;
         font-size: 1.3rem;
         transition: 500ms;
+        display: flex;
         @media (max-width: 1100px) {
           margin: 0.5em;
           width: max-content;
+        }
+        a {
+          text-decoration: none;
+          color: $dark-arrow-white;
         }
         a:hover {
           color: $dark-cart-items-bg;
@@ -89,12 +104,12 @@
       }
     }
 
-    .main_table_cont{
+    .main_table_cont {
       position: relative;
-      .more_data{
+      .more_data {
         width: 100px;
         height: 30px;
-        background-color: #1282A2;
+        background-color: #1282a2;
         position: absolute;
         bottom: -15px;
         left: 43%;
@@ -114,36 +129,126 @@
         height: 20px;
         margin: 0 auto;
       }
-      button {
-        width: 40px;
-        height: 30px;
-        background-color: $dark-mode-grey;
-        margin: 0.5em;
-        border-radius: 10px;
-        transition: 700ms;
-
-        &:hover {
-          background-color: $dark-arrow-black;
+      .child_actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        fieldset {
+          border: 1px dotted $dark-items-bg;
+          border-radius: 6px;
+          p {
+          }
+          div {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            button {
+              transition: 500ms;
+              border: none;
+              box-sizing: border-box;
+              padding: 5px 15px;
+              cursor: pointer;
+              border-radius: 6px;
+              &.edit {
+                background-color: $dark-mode-grey;
+                color: $dark-text-white;
+                &:hover {
+                  background-color: $dark-arrow-black;
+                  transition: 700ms;
+                  svg {
+                    color: $dark-arrow-white;
+                    transition: 500ms;
+                  }
+                }
+              }
+              &.delete {
+                background-color: $red-buttons;
+                svg {
+                  color: $dark-arrow-white;
+                }
+                &:hover {
+                  transition: 500ms;
+                  background-color: $div-red-bg;
+                }
+              }
+            }
+          }
+        }
+      }
+      .actions {
+        @include flexCenter(column);
+        button {
+          width: 40px;
+          height: 30px;
+          background-color: $dark-mode-grey;
+          margin: 0.5em;
+          border-radius: 10px;
           transition: 700ms;
+          cursor: pointer;
+          box-sizing: border-box;
+          border: none;
+          &:hover {
+            background-color: $dark-arrow-black;
+            transition: 700ms;
+            svg {
+              color: $dark-arrow-white;
+              transition: 700ms;
+            }
+          }
+          &.del {
+            background-color: $red-buttons;
+            svg {
+              color: $dark-arrow-white;
+            }
+            &:hover {
+              background-color: $div-red-bg;
+            }
+          }
+          &.other {
+            width: auto;
+            max-width: 80px;
+            height: auto;
+            background-color: rgba(255, 255, 255, 0.363);
+            svg {
+              color: $dark-arrow-white;
+            }
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.89);
+            }
+          }
+
           svg {
-            color: $dark-arrow-white;
+            color: $dark-txt-grey;
             transition: 700ms;
           }
         }
-        &:nth-child(2) {
-          background-color: $red-buttons;
-          svg {
-            color: $dark-arrow-white;
-          }
-          &:hover {
-            background-color: $div-red-bg;
-          }
-        }
-        svg {
-          color: $dark-txt-grey;
+        a {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          margin: 0.5em;
+          border-radius: 10px;
           transition: 700ms;
+          cursor: pointer;
+          @include flexCenter(column);
+          width: 40px;
+          height: 30px;
+          &.edit {
+            background-color: $dark-mode-grey;
+            color: $dark-arrow-white;
+            &:hover {
+              background-color: $dark-arrow-black;
+              transition: 700ms;
+              svg {
+                color: $dark-arrow-white;
+                transition: 700ms;
+              }
+            }
+          }
         }
       }
+
       th {
         @include fontBoldRoboto;
       }
@@ -221,12 +326,19 @@
       color: $dark-text-white;
       border-radius: 10px;
     }
+    .close_main_edit {
+      margin: 30px auto;
+      border: none;
+      cursor: pointer;
+      padding: 10px 25px;
+      display: flex;
+      border-radius: 5px;
+    }
 
     form {
       display: flex;
       background-color: transparent;
       margin: 0 auto;
-      margin-top: 50px;
       width: 500px;
       flex-direction: column;
       @media (max-width: 520px) {
@@ -268,7 +380,7 @@
         padding-left: 0.75em;
         padding-right: 0.75em;
         border: 2px groove $link-txt-blue;
-
+        box-sizing: border-box;
         @media (max-width: 520px) {
           font-size: 0.7rem;
         }
@@ -301,6 +413,7 @@
           height: 2rem;
           border-radius: 10px;
           @include fontRegularRoboto;
+          border: none;
         }
         input[type="submit"] {
           background-color: $red-buttons;
@@ -469,6 +582,60 @@
         @include flexCenter(row);
         color: $dark-text-white;
         border-radius: 10px;
+      }
+    }
+  }
+}
+.popup_forms_ {
+  background-color: $dark-mb-bg !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999;
+  position: fixed !important;
+  left: 0;
+  bottom: 0;
+  @include flexCenter(column);
+  .container_pop {
+    @include flexCenter(column);
+    .close_ {
+      border: none;
+      padding: 10px 20px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      background-color: $div-red-bg;
+      color: $dark-text-white;
+      cursor: pointer;
+      transition: 500ms;
+      &.hover {
+        transition: 500ms;
+        background-color: $dark-icons-red;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      label {
+        color: $dark-text-white;
+      }
+      input {
+        margin-bottom: 20px;
+        outline: none;
+        box-sizing: border-box;
+        padding: 5px 15px;
+        border: none;
+        border-bottom: 1px solid #1282a2;
+        background-color: transparent;
+        color: $dark-text-white;
+      }
+    }
+
+    .but {
+      display: flex;
+      gap: 20px;
+      button {
+        border: none;
+        cursor: pointer;
       }
     }
   }

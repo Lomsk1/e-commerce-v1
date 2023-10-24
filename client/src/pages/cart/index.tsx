@@ -71,7 +71,7 @@ const CartPage: React.FC = () => {
                       <td>
                         {infos.sale > 0 ? (
                           <p>
-                            {infos.newPrice && infos.newPrice} <span>$</span>
+                            {infos.newPrice} <span>$</span>
                           </p>
                         ) : (
                           <p>

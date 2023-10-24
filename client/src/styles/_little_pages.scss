@@ -322,6 +322,8 @@
   border-radius: 10px;
   margin-bottom: 30px;
   overflow: hidden;
+  box-sizing: border-box;
+
   @media (max-width: 1100px) {
     flex-direction: column;
   }
@@ -333,6 +335,7 @@
     background-color: transparent;
     margin-left: 0.5em;
     margin-top: 1em;
+    box-sizing: border-box;
     @media (max-width: 1100px) {
       width: 100%;
       margin: 0em;
@@ -347,6 +350,7 @@
       align-items: center;
       padding-left: 0.5em;
       padding-right: 0.5em;
+      box-sizing: border-box;
       @media (max-width: 1100px) {
         width: 50%;
         margin: 0 auto;
@@ -359,7 +363,18 @@
       button {
         @include fontLightRoboto;
         font-size: 0.8rem;
-        color: $link-txt-blue;
+        color: $dark-text-white;
+        border: none;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        border-radius: 6px;
+        background-color: $dark-mode-grey;
+        transition: 500ms;
+        ს &:hover {
+          transition: 500ms;
+          background-color: $dark-heading;
+        }
       }
     }
     .filters {
@@ -372,15 +387,27 @@
       padding-left: 0.5em;
       padding-right: 0.5em;
       margin-top: 15px;
-
+      box-sizing: border-box;
       @media (max-width: 1100px) {
-        width: 50%;
+        width: 90%;
         margin: 0 auto;
       }
       h2 {
         @include fontBoldRoboto;
         font-size: 1.1rem;
         color: $dark-txt-grey;
+      }
+      button {
+        border: none;
+        padding: 7px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: 500ms;
+        cursor: pointer;
+        background-color: transparent;
+        &:hover {
+          transition: 500ms;
+        }
       }
       svg {
         width: 15px;
@@ -398,7 +425,7 @@
       height: max-content;
       background-color: transparent;
       @media (max-width: 1100px) {
-        width: 50%;
+        width: 90%;
         margin: 0 auto;
       }
       .range_box {
@@ -472,6 +499,8 @@
           @include fontMediumRoboto;
           color: $dark-heading;
           transition: 500ms;
+          border: none;
+          cursor: pointer;
           &:hover {
             transition: 500ms;
             background-color: $dark-heading;
@@ -484,17 +513,22 @@
       width: 100%;
       height: max-content;
       @media (max-width: 1100px) {
-        width: 50%;
+        width: 90%;
         margin: 0 auto;
       }
       ul {
         width: 100%;
         height: max-content;
         background-color: transparent;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        gap: 5px;
         li {
           background-color: transparent;
-          margin-top: 5px;
           padding-left: 0.5em;
+          box-sizing: border-box;
           input {
             cursor: pointer;
           }
@@ -522,6 +556,7 @@
     height: max-content;
     min-height: 50px;
     background-color: transparent;
+    box-sizing: border-box;
     @media (max-width: 1100px) {
       width: 100%;
       margin-top: 20px;
@@ -536,10 +571,20 @@
       padding-left: 0.5em;
       padding-right: 0.5em;
       margin-top: 10px;
+      box-sizing: border-box;
+
+      @media (max-width: 400px) {
+        flex-direction: column;
+        gap: 10px;
+      }
       h1 {
         font-size: 1.4rem;
         @include fontBoldRoboto;
         color: $dark-txt-grey;
+
+        @media (max-width: 400px) {
+          margin: 0;
+        }
       }
       .stock {
         width: max-content;
@@ -548,6 +593,7 @@
           @include fontRegularRoboto;
           color: $dark-text-white;
           cursor: pointer;
+          text-decoration: underline;
         }
         input {
           margin-left: 1em;
@@ -561,6 +607,10 @@
         @include fontRegularRoboto;
         color: $dark-text-white;
         cursor: pointer;
+        box-sizing: border-box;
+        padding: 2px;
+        border-radius: 6px;
+        border: none;
         option {
           background-color: $dark-navigation-bg;
         }
@@ -569,11 +619,18 @@
     .product_boxes {
       width: 100%;
       height: max-content;
-      min-height: 50px;
-      display: flex;
+      display: grid;
       background-color: transparent;
       margin-top: 20px;
-      flex-wrap: wrap;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      box-sizing: border-box;
+      padding: 10px;
+      .product {
+        box-sizing: border-box;
+        margin: 0 !important;
+        height: fit-content !important;
+      }
     }
   }
 }
@@ -828,6 +885,7 @@
             height: 1.8rem;
             margin-top: 10px;
             background-color: transparent;
+            border: none;
             border-bottom: 1px solid white;
             color: $dark-text-white;
           }
@@ -840,6 +898,7 @@
             height: 5rem;
             margin-top: 10px;
             background-color: transparent;
+            border: none;
             border-bottom: 1px solid white;
             color: $dark-text-white;
           }
@@ -852,6 +911,8 @@
           border-radius: 10px;
           color: $dark-text-white;
           transition: 500ms;
+          cursor: pointer;
+          border: none;
           &:hover {
             transition: 500ms;
             background-color: $div-red-bg;

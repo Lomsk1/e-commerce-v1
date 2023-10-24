@@ -96,7 +96,7 @@ const WishlistPage: React.FC = () => {
                           <button
                             onClick={() => {
                               navigate(
-                                `/product-detail/${data.data?.title}/${data.data.id}`
+                                `/product/${data.data?.id}/${data.data.title}`
                               );
                             }}
                           >

@@ -10,6 +10,7 @@ import { getAllBranch } from "../../api/branch/get";
 import useBranchStore from "../../store/client/branch/branch";
 import { useEffect } from "react";
 import MapLeafletContainer from "../map";
+import useAuthStore from "../../store/client/user/useAuthStore";
 
 const Footer: React.FC = () => {
   /* Query */
@@ -21,6 +22,7 @@ const Footer: React.FC = () => {
 
   /* Stores */
   const { setBranch } = useBranchStore((state) => state);
+  const { isAuthenticated } = useAuthStore((state) => state);
 
   /* Branch Data */
   useEffect(() => {
@@ -32,29 +34,16 @@ const Footer: React.FC = () => {
     return <div>Loading</div>;
   }
 
-  // const { isAuthenticated } = useSelector((state) => state.auth);
-
-  // useEffect(() => {
-  //   let isSub = true;
-
-  //   if (isSub) {
-  //     // dispatch(getAllBranchData());
-  //     // dispatch(getBranchCoords());
-  //   }
-
-  //   return () => {
-  //     isSub = false;
-  //   };
-  // }, []);
-
   return (
     <>
       <section className="footer">
         <div className="up">
           <div className="about_us same">
+
             <div className="title">
               <h1>ABOUT US</h1>
             </div>
+            
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
               eiusmod tempor incididunt ut.
@@ -86,13 +75,6 @@ const Footer: React.FC = () => {
               <li>
                 <Link to={"/contact"}>Contact Us</Link>
               </li>
-
-              <li>
-                <Link to={"/"}>Orders and Returns</Link>
-              </li>
-              <li>
-                <Link to={"/"}>Privacy Policy</Link>
-              </li>
               <li>
                 <Link to={"/terms-and-privacy"}>Terms & Conditions</Link>
               </li>
@@ -105,24 +87,21 @@ const Footer: React.FC = () => {
             </div>
             <ul>
               <li>
-                {/* {isAuthenticated ? (
-                    <Link to={"/costumer/info"}>My Account</Link>
-                  ) : (
-                    <Link to={"/log_in"}>My Account</Link>
-                  )} */}
+                {isAuthenticated ? (
+                  <Link to={"/costumer/info"}>My Account</Link>
+                ) : (
+                  <Link to={"/login"}>My Account</Link>
+                )}
               </li>
               <li>
                 <Link to={"/cart"}>View Cart</Link>
               </li>
               <li>
-                {/* {isAuthenticated ? (
-                    <Link to={"/wishlist"}>Wishlist</Link>
-                  ) : (
-                    <Link to={"/log_in"}>Wishlist</Link>
-                  )} */}
-              </li>
-              <li>
-                <Link to={"/"}>Track My Order</Link>
+                {isAuthenticated ? (
+                  <Link to={"/wishlist"}>Wishlist</Link>
+                ) : (
+                  <Link to={"/login"}>Wishlist</Link>
+                )}
               </li>
               <li>
                 <Link to={"/"}>Help</Link>

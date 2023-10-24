@@ -90,15 +90,15 @@ const ProductStockInformation: React.FC<PropTypes> = ({ data }) => {
               (!wishlist.data.wishlistItems
                 .map((data) => data.product)
                 .includes(data.id) ? (
-                <div>Add to Wishlist</div>
+                <p>Add to Wishlist</p>
               ) : (
-                <div>Remove from Wishlist</div>
+                <p>Remove from Wishlist</p>
               ))}
           </div>
         ) : (
           <div
             onClick={() => {
-              navigate("/log_in");
+              navigate("/login");
             }}
           >
             <FontAwesomeIcon icon={faHeart} />

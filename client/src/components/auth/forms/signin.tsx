@@ -12,7 +12,11 @@ type FormValues = {
   password: string;
 };
 
-const LoginForm: React.FC = () => {
+interface PropTypes {
+  close: () => void;
+}
+
+const LoginForm: React.FC<PropTypes> = ({ close }) => {
   /* Query Client */
   const queryClient = useQueryClient();
 
@@ -34,8 +38,8 @@ const LoginForm: React.FC = () => {
       if (data.status === "success") {
         setUserCookie(data.token);
         queryClient.invalidateQueries({ queryKey: ["user"] });
-
         userState(data);
+        close();
       }
     },
   });

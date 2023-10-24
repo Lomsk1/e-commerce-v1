@@ -37,6 +37,7 @@ export interface BranchDoc extends Document {
     long: string;
   };
   branchWorkingHours: {
+    [x: string]: any;
     weekDay: string;
     hour: string;
   }[];

@@ -40,7 +40,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-
+    list-style: none;
+    padding: 0;
     @media (max-width: 900px) {
       flex-direction: row;
       flex-wrap: wrap;
@@ -57,6 +58,7 @@
         @include fontMediumRoboto;
         color: $link-txt-blue;
         transition: 500ms;
+        text-decoration: none;
       }
       svg {
         width: 17px;
@@ -84,7 +86,7 @@
   justify-content: space-between;
   padding-bottom: 50px;
   margin-top: 30px;
-
+  box-sizing: border-box;
   @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
@@ -99,7 +101,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-
+    box-sizing: border-box;
+    margin: 0;
     @media (max-width: 900px) {
       width: 100%;
       margin-top: 30px;
@@ -155,7 +158,8 @@
         @include fontRegularRoboto;
         color: $dark-text-white;
         transition: 500ms;
-
+        border: none;
+        cursor: pointer;
         &:hover {
           transition: 500ms;
           background-color: #131112;
@@ -181,7 +185,9 @@
         background-color: transparent;
         display: flex;
         flex-direction: column;
-
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
         .box {
           width: 100%;
           height: max-content;
@@ -189,6 +195,9 @@
           background-color: transparent;
           display: flex;
           justify-content: space-between;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
           margin-top: 30px;
           @media (max-width: 640px) {
             flex-direction: column;
@@ -220,11 +229,14 @@
               height: 35px;
               outline: none;
               background: transparent;
+              padding: 0;
               padding-left: 1em;
               padding-right: 2.5em;
               color: $dark-text-white;
               border: 1px dotted grey;
               border-radius: 10px;
+              box-sizing: border-box;
+              margin: 0;
             }
             input[type="file"] {
               width: 100%;
@@ -279,9 +291,10 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  padding: 0;
   padding-bottom: 50px;
   margin-top: 30px;
-
+  box-sizing: border-box;
   @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
@@ -296,7 +309,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-
+    margin: 0;
+    box-sizing: border-box;
     @media (max-width: 900px) {
       width: 100%;
       margin-top: 30px;
@@ -326,69 +340,20 @@
       height: max-content;
       min-height: 100px;
       background-color: transparent;
+      margin: 0;
+      padding: 0;
       margin-top: 40px;
       @include authFormBasic;
-    }
-  }
-}
-
-.email_change {
-  width: 90%;
-  height: max-content;
-  min-height: 200px;
-  background-color: transparent;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 50px;
-  margin-top: 30px;
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .main_information {
-    width: 75%;
-    min-height: 200px;
-    height: max-content;
-    background-color: $dark-mode-grey;
-    padding: 1em;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-
-    @media (max-width: 900px) {
-      width: 100%;
-      margin-top: 30px;
-    }
-
-    .title {
-      width: 100%;
-      min-height: 2rem;
-      background-color: transparent;
-      text-align: center;
-      h1 {
-        @include fontBoldRoboto;
-        font-size: 1.5rem;
-        color: $dark-txt-grey;
-        letter-spacing: 5px;
-        word-spacing: 10px;
+      box-sizing: border-box;
+      div {
+        input {
+          border: none;
+        }
       }
-    }
-    hr {
-      width: 80%;
-      margin: 0 auto;
-      margin-top: 30px;
-    }
-
-    .form_container {
-      width: 100%;
-      height: max-content;
-      min-height: 100px;
-      background-color: transparent;
-      margin-top: 40px;
-      @include authFormBasic;
+      button {
+        border: none;
+        cursor: pointer;
+      }
     }
   }
 }

@@ -13,29 +13,27 @@ const ProductModelInformation: React.FC<PropTypes> = ({ sepData }) => {
       {" "}
       <div className="memories">
         <div className="title">
+          {sepData.result > 0 && (
+            <p>
+              Model: <span></span>
+            </p>
+          )}{" "}
           <div className="memory_cont">
-            {sepData.result > 0 && (
-              <p>
-                Model:{" "}
-                <span>
-                  {sepData.data.map((model) =>
-                    model.specifications.map((m) =>
-                      m.specificationBasics
-                        .filter((r) => r.middle.toUpperCase() === "MODEL")
-                        .map((d) => (
-                          <div
-                            key={d._id}
-                            onClick={() => {
-                              navigate(`/product/${model.id}/${model.title}`);
-                            }}
-                          >
-                            <p>{d.name}</p>
-                          </div>
-                        ))
-                    )
-                  )}
-                </span>
-              </p>
+            {sepData.data.map((model) =>
+              model.specifications.map((m) =>
+                m.specificationBasics
+                  .filter((r) => r.middle.toUpperCase() === "MODEL")
+                  .map((d) => (
+                    <div
+                      key={d._id}
+                      onClick={() => {
+                        navigate(`/product/${model.id}/${model.title}`);
+                      }}
+                    >
+                      <p>{d.name}</p>
+                    </div>
+                  ))
+              )
             )}
           </div>
         </div>

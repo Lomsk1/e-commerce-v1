@@ -9,7 +9,12 @@ import {
 } from "../controllers/authController";
 import { protect } from "../middlewares/protect";
 import { getMe } from "../middlewares/user";
-import { deleteMe, getUser, updateMe } from "../controllers/userController";
+import {
+  deleteMe,
+  getUser,
+  getUsersByEmail,
+  updateMe,
+} from "../controllers/userController";
 
 const userRouter = express.Router();
 
@@ -25,6 +30,8 @@ userRouter.get("/me", getMe, getUser);
 
 userRouter.patch("/updateMyPassword", updatePassword);
 userRouter.patch("/updateMe", updateMe);
+
+userRouter.get("/byEmail/:email", getUsersByEmail);
 
 userRouter.post("/logout", logout);
 userRouter.delete("/deleteMe", deleteMe);

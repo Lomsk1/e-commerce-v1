@@ -49,6 +49,7 @@ const ContactForm: React.FC = () => {
         <div>
           <label htmlFor="name">Full Name:</label>
           <input
+            autoComplete="given-name"
             type="text"
             id="name"
             placeholder="Full name"
@@ -59,6 +60,7 @@ const ContactForm: React.FC = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <input
+            autoComplete="family-name"
             type="email"
             id="email"
             placeholder="Email"
@@ -69,6 +71,7 @@ const ContactForm: React.FC = () => {
         <div>
           <label htmlFor="phone">Phone:</label>
           <input
+            autoComplete="off"
             type="string"
             id="phone"
             placeholder="Phone"

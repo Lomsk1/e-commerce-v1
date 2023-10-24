@@ -36,6 +36,8 @@
         background-color: $link-txt-blue;
         border-radius: 10px;
         transition: 700ms;
+        cursor: pointer;
+        border: none;
         &:hover {
           transition: 700ms;
           background-color: $dark-txt-grey;
@@ -279,8 +281,20 @@
           @include flexCenter(row);
           font-size: 1.2rem;
           color: $dark-text-white;
+          cursor: pointer;
+          border: none;
+          transition: 500ms;
+          &:hover {
+            transition: 500ms;
+            background-color: $dark-text-red;
+          }
           &:last-child {
             background-color: $red-buttons;
+            transition: 500ms;
+            &:hover {
+              transition: 500ms;
+              background-color: $div-red-bg;
+            }
           }
           @media (max-width: 767px) {
             width: 80px;
@@ -345,6 +359,13 @@
       border-radius: 15px;
       color: $dark-text-white;
       @include fontMediumRoboto;
+      cursor: pointer;
+      transition: 500ms;
+      border: none;
+      &:hover {
+        transition: 500ms;
+        background-color: $dark-text-red;
+      }
     }
   }
 
@@ -433,6 +454,7 @@
     height: 3rem;
     background-color: transparent;
     text-align: center;
+
     h1 {
       font-size: 1.5rem;
       @include fontBoldRoboto;
@@ -581,7 +603,8 @@
         color: $dark-text-white;
         border-radius: 10px;
         overflow: hidden;
-
+        cursor: pointer;
+        border: none;
         &:hover {
           background-color: #a70616;
           transition: 700ms;
@@ -736,10 +759,9 @@
             height: 80%;
             width: 1px;
             background-color: $dark-txt-grey;
-            @media (max-width:620px){
-                display: none;
+            @media (max-width: 620px) {
+              display: none;
             }
-            
           }
           .button {
             width: 49%;
@@ -756,6 +778,13 @@
               color: $dark-text-white;
               border-radius: 10px;
               overflow: hidden;
+              transition: 500ms;
+              cursor: pointer;
+              border: none;
+              &:hover {
+                transition: 500ms;
+                background-color: $dark-text-red;
+              }
               svg {
                 color: $dark-txt-grey;
               }
@@ -775,11 +804,26 @@
         button {
           width: 80%;
           min-height: 40px;
-          background-color: seagreen;
+          background-color: $red-buttons;
           margin-top: 10px;
           color: $dark-text-white;
           border-radius: 10px;
           overflow: hidden;
+          transition: 500ms;
+          border: none;
+          cursor: pointer;
+          &:hover {
+            transition: 500ms;
+            background-color: $dark-text-red;
+          }
+          &:first-child {
+            background-color: seagreen;
+            transition: 500ms;
+            &:hover {
+              transition: 500ms;
+              background-color: $dark-items-bg;
+            }
+          }
         }
       }
     }

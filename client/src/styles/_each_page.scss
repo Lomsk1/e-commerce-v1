@@ -142,12 +142,14 @@
               display: flex;
               cursor: pointer;
               width: fit-content;
+              justify-content: center;
               img {
                 width: 2rem;
                 height: 2rem;
                 // mix-blend-mode: color-burn;
               }
               p {
+                margin: 0;
                 margin-left: 0.5em;
                 @include fontRegularRoboto;
                 color: $dark-text-white;
@@ -182,6 +184,11 @@
                 margin-left: 0.5em;
                 color: $dark-text-white;
                 @include fontRegularRoboto;
+                &:nth-child(2) {
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
               }
               svg {
                 color: $dark-arrow-white;
@@ -265,7 +272,6 @@
             height: max-content;
             background-color: transparent;
             min-width: 240px;
-
             @media (max-width: 500px) {
               width: 100%;
             }
@@ -273,6 +279,8 @@
               color: $dark-text-white;
               font-size: 0.9rem;
               @include fontMediumRoboto;
+              display: flex;
+              justify-content: space-evenly;
               span {
                 color: $link-txt-blue;
               }
@@ -306,23 +314,35 @@
             flex-wrap: wrap;
             div {
               width: fit-content;
-              height: 50px;
               background-color: $dark-txt-grey;
               margin: 0.5em;
-              padding: 1em;
+              padding: 10px;
               cursor: pointer;
               @include flexCenter(row);
-              color: $dark-arrow-black;
-              @include fontMediumRoboto;
               font-size: 0.9rem;
               border-radius: 10px;
+              transition: 500ms;
+              &:hover {
+                transition: 500ms;
+                background-color: $dark-text-white;
+              }
+              p {
+                @include fontMediumRoboto;
+                color: $dark-arrow-black;
+                margin: 0;
+              }
             }
           }
         }
       }
     }
   }
-
+  hr {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: $dark-icons-red;
+  }
   .each_products_product_buy {
     width: 25%;
     min-width: 320px;
@@ -513,32 +533,36 @@
 }
 .nav_bar {
   width: 95%;
-  height: 4rem;
+  height: max-content;
   background-color: transparent;
   margin-top: 20px;
+
   ul {
-    width: 100%;
-    height: 100%;
+    height: max-content;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 15px;
     li {
       background-color: transparent;
-      margin: 1em;
-      @include fontMediumRoboto;
+      // margin: 1em;
       font-size: 1.3rem;
       color: $dark-text-white;
-      transition: 700ms;
-      cursor: pointer;
-
-      &:hover {
-        transition: 700ms;
-        color: $link-txt-blue;
-        text-decoration: underline;
-      }
-
-      @media (max-width: 500px) {
+      text-align: center;
+      @media (max-width: 700px) {
         font-size: 1rem;
         margin: 0.3rem;
+      }
+      a {
+        transition: 500ms;
+        cursor: pointer;
+        @include fontMediumRoboto;
+        margin: 0;
+        &:hover {
+          transition: 500ms;
+          color: $link-txt-blue;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -562,7 +586,6 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-
   .title {
     width: 100%;
     height: 3rem;
@@ -582,6 +605,9 @@
     min-height: 20px;
     background-color: transparent;
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
     .spec_cat {
       width: 100%;
       height: max-content;
@@ -590,13 +616,12 @@
       margin-top: 5px;
       display: flex;
       .spec_title {
-        background-color: transparents;
+        background-color: transparent;
         width: 20%;
         height: 100%;
         @include fontMediumRoboto;
         color: $dark-txt-grey;
         text-transform: capitalize;
-
         @media (max-width: 600px) {
           display: none;
         }
@@ -606,6 +631,7 @@
         background-color: transparent;
         display: flex;
         flex-direction: column;
+        gap: 5px;
         @media (max-width: 600px) {
           width: 100%;
         }
@@ -650,12 +676,16 @@
 
     .branch_names_for_each {
       width: 46%;
-      height: 15rem;
+      max-height: 15rem;
       background-color: transparent;
       @include scroll;
       display: flex;
       flex-direction: column;
-      overflow-y: scroll;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 10px;
+      box-sizing: border-box;
+
       @media (max-width: 570px) {
         width: 95%;
       }
@@ -666,6 +696,7 @@
         background-color: $dark-items-bg;
         margin-top: 15px;
         position: relative;
+        box-sizing: border-box;
         @include flexCenter(column);
         border-radius: 10px;
         cursor: pointer;
@@ -684,7 +715,6 @@
         p {
           position: absolute;
           top: 40px;
-          // color: $dark-searchBar-red;
           color: #43aa8b;
           @include fontMediumRoboto;
         }
@@ -697,6 +727,9 @@
         input {
           position: absolute;
           opacity: 0;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
         }
       }
     }
@@ -725,16 +758,20 @@
         min-height: 100px;
         background-color: transparent;
         margin-top: 10px;
-
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
         .weekday_hour {
           width: 100%;
-          min-height: 2.5rem;
+          height: fit-content;
           background-color: transparent;
           display: flex;
           align-items: center;
           justify-content: space-between;
+          padding: 5px 0;
           P {
             @include fontRegularRoboto;
+            margin: 0;
             &:nth-child(1) {
               color: $dark-text-white;
             }
@@ -752,6 +789,7 @@
       .map_container {
         width: 100%;
         height: 10rem;
+        margin-top: 20px;
         background-color: transparent;
         border-radius: 5px;
         overflow: hidden;

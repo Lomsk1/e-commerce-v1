@@ -11,6 +11,19 @@ export interface UserTypes {
   };
 }
 
+export interface UsersTypes {
+  status: string;
+  result: number;
+  data: {
+    email: string;
+    firstName: string;
+    id: string;
+    lastName: string;
+    role: string;
+    passwordChangedAt?: string;
+  }[];
+}
+
 export interface UserDecodedTypes {
   id: string;
   email: string;

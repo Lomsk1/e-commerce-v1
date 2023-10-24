@@ -19,9 +19,6 @@ const NavigationSearchForm: React.FC = () => {
   /* States */
   const [selectIsOpen, setSelectIsOpen] = useState<boolean>(false);
 
-  /* Query Client */
-  // const queryClient = useQueryClient();
-
   /* Store */
   const categoriesStore = useCategoryStore((state) => state.categories);
 

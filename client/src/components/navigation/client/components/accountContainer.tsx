@@ -39,11 +39,12 @@ const AccountContainer: React.FC<AccountContainerTypes> = ({
           <>
             {/* Login Form */}
 
-            <LoginForm />
+            <LoginForm close={close} />
 
             <button
               onClick={() => {
                 navigate("/register");
+                close();
               }}
               className={"register_btn"}
             >

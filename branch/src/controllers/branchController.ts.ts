@@ -26,9 +26,9 @@ export const createBranch = catchAsync(
           },
         }
       );
-      console.log(createProductBranch);
 
       if (createProductBranch.status !== 201) {
+        console.log(createProductBranch.data);
         await Branch.findByIdAndDelete(data._id);
 
         return next(new AppError("Product branch does not created", 404));
@@ -96,9 +96,8 @@ export const deleteBranch = catchAsync(
         )
       );
 
-    res.status(204).json({
+    res.status(200).json({
       status: "success",
-      data: null,
     });
   }
 );

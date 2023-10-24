@@ -43,7 +43,7 @@
   justify-content: space-between;
   border-radius: 15px;
   padding-bottom: 50px;
-
+  box-sizing: border-box;
   @media (max-width: 1125px) {
     flex-direction: column;
   }
@@ -76,7 +76,6 @@
       margin: 10px;
       a {
         transition: 700ms;
-
         &:hover {
           color: aqua;
           transition: 700ms;
@@ -91,7 +90,9 @@
     min-height: 200px;
     background-color: $dark-items-bg;
     border-radius: 15px;
-
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
     @media (max-width: 1125px) {
       width: 100%;
       margin-top: 40px;
@@ -123,6 +124,10 @@
       margin-top: 40px;
       display: flex;
       justify-content: space-between;
+      @media (max-width: 550px) {
+        flex-direction: column;
+        align-items: center;
+      }
       .img_box {
         width: 20%;
         min-width: 200px;
@@ -148,9 +153,6 @@
         min-height: 100px;
         background-color: transparent;
         margin-left: 1em;
-
-        @media (max-width: 475px) {
-        }
         div {
           width: 100%;
           height: max-content;
@@ -168,6 +170,8 @@
             @include fontRegularRoboto;
             color: $dark-text-white;
             text-transform: capitalize;
+            word-break: break-all;
+            word-wrap: break-word;
           }
         }
       }
@@ -175,13 +179,12 @@
     .member_statistic {
       width: 100%;
       height: max-content;
-      min-height: 300px;
       background-color: transparent;
       margin-top: 50px;
       display: flex;
       flex-direction: column;
       padding: 1em;
-
+      box-sizing: border-box;
       .title_box {
         width: 100%;
         min-height: 3rem;
@@ -201,6 +204,9 @@
         margin-top: 20px;
         position: relative;
         @include flexCenter(row);
+        align-items: center;
+        padding: 0;
+        box-sizing: border-box;
         input {
           width: 100%;
           height: 2rem;
@@ -213,10 +219,19 @@
           background-color: transparent;
           color: $dark-text-white;
         }
+        button {
+          cursor: pointer;
+          box-sizing: border-box;
+          @include flexCenter(row);
+          background-color: transparent;
+          border: none;
+          position: static;
+          margin: 0;
+        }
         svg {
-          position: absolute;
+          // position: absolute;
           right: 20px;
-          top: 17px;
+          // top: 17px;
           color: $dark-text-red;
         }
       }
@@ -230,7 +245,7 @@
         @include flexCenter(row);
         justify-content: space-between;
 
-        button{
+        button {
           @include fontRegularRoboto;
           width: 120px;
           height: 30px;
@@ -238,6 +253,8 @@
           margin: 0.5em;
           border-radius: 10px;
           transition: 700ms;
+          border: none;
+          cursor: pointer;
           &:nth-child(2) {
             background-color: $red-buttons;
             color: $dark-text-white;
@@ -256,8 +273,14 @@
       table {
         width: 100%;
         background-color: cadetblue;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
         td {
           @include fontRegularRoboto;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
         }
 
         .name {
@@ -282,11 +305,16 @@
           width: 30px;
           height: 30px;
           background-color: #2b2b40;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
           margin: 0.5em;
           border-radius: 10px;
           transition: 700ms;
           position: relative;
-          &:nth-child(3) {
+          cursor: pointer;
+          border: none;
+          &:nth-child(2) {
             background-color: $red-buttons;
             &:hover {
               background-color: $div-red-bg;

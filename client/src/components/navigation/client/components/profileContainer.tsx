@@ -1,25 +1,23 @@
-// import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-// import { checkAuth, logout } from "../../API/auth/actions";
+import { Link } from "react-router-dom";
 import TriangleSVG from "../../../../assets/icons/triangle";
 import Wrapper from "../../../wrapper";
+import Cookies from "js-cookie";
+import { UserTypes } from "../../../../types/userTypes";
 
 interface ProfileContainerTypes {
   visible: boolean;
   close: () => void;
+  user?: UserTypes["user"];
 }
 
 const ProfileContainer: React.FC<ProfileContainerTypes> = ({
   visible,
   close,
+  user,
 }) => {
-  //   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const logOutHandler = () => {
-    // dispatch(logout());
-    // dispatch(checkAuth());
-    navigate("/");
+    Cookies.remove("jwt");
+    location.reload();
   };
   return (
     <>
@@ -35,7 +33,9 @@ const ProfileContainer: React.FC<ProfileContainerTypes> = ({
 
         <ul>
           <li>
-            <Link to={"/costumer/info"}>My Profile</Link>
+            <Link to={`/profile/${user?.id}`} onClick={() => close()}>
+              My Profile
+            </Link>
           </li>
           <li>
             <Link to={""}>Orders</Link>

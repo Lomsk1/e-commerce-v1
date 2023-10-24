@@ -52,20 +52,37 @@ export const updateMe = catchAsync(
 
     res.status(200).json({
       status: "success",
-      data: {
-        user: updateUser,
-      },
+      user: updateUser,
     });
   }
 );
 
 export const deleteMe = catchAsync(
-    async (req: Request, res: Response, _next: NextFunction) => {
-      await User.findByIdAndUpdate(req.user.id, { active: false });
-  
-      res.status(204).json({
-        status: "success",
-        data: null,
-      });
-    }
-  );
+  async (req: Request, res: Response, _next: NextFunction) => {
+    await User.findByIdAndUpdate(req.user.id, { active: false });
+
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  }
+);
+
+export const getUsersByEmail = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const { email } = req.params;
+
+    const emails = email.split(" ").filter(Boolean); // Split the slug into individual slugs
+
+    const regexConditions = emails.map((s) => new RegExp(s, "i")); // Create regex patterns for each slug
+    const query = { email: { $in: regexConditions } };
+
+    const data = await User.find(query);
+
+    res.status(200).json({
+      status: "success",
+      result: data.length,
+      data,
+    });
+  }
+);

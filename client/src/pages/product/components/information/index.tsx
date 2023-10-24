@@ -56,9 +56,11 @@ const ProductMainInformation: React.FC<PropTypes> = ({ data, sepData }) => {
               {/* </div> */}
 
               {/*/////////////// Main Specifications ///////////////////*/}
-              {data.specifications && (
-                <EachProductBasic data={data.specifications} />
-              )}
+              <div className="basic_infos">
+                {data.specifications && (
+                  <EachProductBasic data={data.specifications} />
+                )}
+              </div>
             </div>
 
             {/* Memory */}

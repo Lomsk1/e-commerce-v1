@@ -26,8 +26,6 @@ const AuthClientNavigation: React.FC<AuthTypes> = ({
     setAdminLong(!adminLong);
   };
 
-  // const queryClient = useQueryClient();
-  // console.log(queryClient.invalidateQueries({ queryKey: ["user"] }));
   return (
     <>
       {isAuthenticated ? (
@@ -44,6 +42,7 @@ const AuthClientNavigation: React.FC<AuthTypes> = ({
             <ProfileContainer
               visible={profileLong}
               close={profileLongHandler}
+              user={userInfo}
             />
           )}
         </>

@@ -27,8 +27,7 @@ const EachProductBasic: React.FC<PropTypes> = ({ data }) => {
           <Fragment key={basic._id}>
             {basic.specificationBasics.map((spec) => (
               <p key={spec._id}>
-                {spec.middle} --
-                <span>{spec.name}</span>
+                {spec.middle} <span>-</span> <span>{spec.name}</span>
               </p>
             ))}
           </Fragment>

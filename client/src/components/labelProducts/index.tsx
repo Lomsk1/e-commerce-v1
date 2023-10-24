@@ -16,14 +16,18 @@ const LabelProducts: React.FC<PropTypes> = (props) => {
   return (
     <>
       <div className="label_products">
-        <div className="icon">
-          <FontAwesomeIcon icon={props.icons} />
+        <div className="text">
+          <div className="icon">
+            <FontAwesomeIcon icon={props.icons} />
+          </div>
+          <div className="title">
+            <h1>{props.title}</h1>
+          </div>
         </div>
-        <div className="title">
-          <h1>{props.title}</h1>
-          {props.butt && props.children}
-        </div>
-        <div className="button">{!props.butt && props.children}</div>
+
+        {props.butt && <div className="butt">{props.children}</div>}
+
+        {!props.butt && <div className="button">{props.children}</div>}
       </div>
       <hr className="hr" />
     </>
