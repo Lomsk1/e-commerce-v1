@@ -1114,3 +1114,11 @@
     }
   }
 }
+.butt {
+  &:nth-child(2) {
+    margin-right: 5px;
+  }
+  &:nth-last-child(-n + 2) {
+    margin-left: 5px;
+  }
+}

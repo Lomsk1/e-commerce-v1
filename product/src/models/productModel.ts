@@ -240,7 +240,6 @@ const productSchema = new mongoose.Schema<ProductAttrs>(
       },
       image: {
         type: String,
-        required: [true, "Please, add a brand image"],
       },
     },
     brandId: String,

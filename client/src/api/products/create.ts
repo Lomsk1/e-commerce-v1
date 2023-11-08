@@ -1,27 +1,28 @@
 import { getUserCookie } from "../../helpers/user";
-import { branchBaseURL } from "../../middlewares/env";
-import { BranchType } from "../../types/branch";
+import { productBaseURL } from "../../middlewares/env";
+import { ProductType } from "../../types/product";
 import { ResponseError } from "../../utils/responseError";
 
-export const createBranch = async ({
-  city,
-  address,
-  name,
-  phone,
-  branchCoord,
+export const createProduct = async ({
+  formData,
 }: {
-  city: string;
-  address: string;
-  name: string;
-  phone: string;
-  branchCoord: { lat: string; long: string };
+  formData: FormData;
 }): Promise<
-  BranchType & {
+  ProductType & {
     error: {
       errors: {
         name: {
           message: string;
-          path: "city" | "address" | "name" | "phone" | `root.${string}` | "root" | "lat" | "long" | "weekDay" | "hour";
+          path:
+            | "title"
+            | "description"
+            | "thumbnail"
+            | "color"
+            | `root.${string}`
+            | "price"
+            | "brand"
+            | "category"
+            | "separate";
         };
       };
     };
@@ -32,19 +33,12 @@ export const createBranch = async ({
   const userToken = getUserCookie();
   if (!userToken) null;
   try {
-    const response = await fetch(`${branchBaseURL}api/v1/branch`, {
+    const response = await fetch(`${productBaseURL}api/v1/product`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${userToken}`,
       },
-      body: JSON.stringify({
-        city: city,
-        name: name,
-        address: address,
-        phone: phone,
-        branchCoord,
-      }),
+      body: formData,
     });
 
     const result = await response.json();

@@ -57,6 +57,8 @@ export interface ProductsType {
 }
 
 export interface ProductType {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  error: any;
   status: string;
   data: {
     category: {
@@ -109,4 +111,17 @@ export interface ProductType {
       }[];
     }[];
   };
+}
+
+export interface ProductStatsTypes {
+  status: string;
+  total: number;
+  stats: {
+    _id: string;
+    numProducts: number;
+    numInStock: number;
+    numTop: number;
+    numPopular: number;
+    numNew: number;
+  }[];
 }

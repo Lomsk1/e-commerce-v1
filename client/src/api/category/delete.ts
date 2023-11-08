@@ -1,8 +1,8 @@
 import { getUserCookie } from "../../helpers/user";
-import { branchBaseURL } from "../../middlewares/env";
+import {  categoryBaseURL } from "../../middlewares/env";
 import { ResponseError } from "../../utils/responseError";
 
-export const deleteBranch = async ({
+export const deleteCategory = async ({
   id,
 }: {
   id: string;
@@ -10,7 +10,7 @@ export const deleteBranch = async ({
   const userToken = getUserCookie();
   if (!userToken) null;
   try {
-    const response = await fetch(`${branchBaseURL}api/v1/branch/${id}`, {
+    const response = await fetch(`${categoryBaseURL}api/v1/category/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

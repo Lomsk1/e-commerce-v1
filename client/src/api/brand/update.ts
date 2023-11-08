@@ -1,27 +1,30 @@
 import { getUserCookie } from "../../helpers/user";
-import { branchBaseURL } from "../../middlewares/env";
+import { brandBaseURL } from "../../middlewares/env";
+import { brandType } from "../../types/brand";
 import { ResponseError } from "../../utils/responseError";
 
-export const deleteBranch = async ({
+export const updateBrand = async ({
+  formData,
   id,
 }: {
   id: string;
-}): Promise<{ status: string; message: string }> => {
+  formData: FormData;
+}): Promise<brandType> => {
   const userToken = getUserCookie();
   if (!userToken) null;
   try {
-    const response = await fetch(`${branchBaseURL}api/v1/branch/${id}`, {
-      method: "DELETE",
+    const response = await fetch(`${brandBaseURL}api/v1/brand/${id}`, {
+      method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${userToken}`,
       },
+      body: formData,
     });
 
     const result = await response.json();
 
-    //   if (!response.ok) {
-    //     throw new ResponseError('something went wrong', result);
+    //   if (result.status !== "success") {
+    //     throw new ResponseError(result.message, result);
     //   }
 
     return result;

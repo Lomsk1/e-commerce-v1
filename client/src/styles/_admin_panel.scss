@@ -478,6 +478,21 @@
           border-radius: 10px;
           @include fontRegularRoboto;
         }
+        .choice {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          label {
+            margin: 0;
+          }
+          input {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+          }
+        }
       }
     }
   }
@@ -638,5 +653,12 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.pag{
+  footer{
+    display: flex;
+    padding: 0 20px;
   }
 }

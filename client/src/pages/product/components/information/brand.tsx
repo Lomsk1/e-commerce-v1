@@ -9,14 +9,15 @@ const ProductBrandInformation: React.FC<PropTypes> = ({ brand }) => {
     <>
       <div className="brand">
         <div>
-          {brand.image ? (
-            <>
-              <img src={brand.image} alt="brand" />
-              <p>{brand.name && brand.name}</p>
-            </>
-          ) : (
+          {/* {brand.image ? ( */}
+          <>
+            {/* <img src={brand.image} alt="brand" /> */}
+            <p>{brand.name && brand.name}</p>
+          </>
+          {/* ) : (
             <div>Loading...</div>
-          )}
+          ) */}
+          {/* } */}
         </div>
       </div>
     </>

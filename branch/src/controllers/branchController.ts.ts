@@ -28,7 +28,6 @@ export const createBranch = catchAsync(
       );
 
       if (createProductBranch.status !== 201) {
-        console.log(createProductBranch.data);
         await Branch.findByIdAndDelete(data._id);
 
         return next(new AppError("Product branch does not created", 404));

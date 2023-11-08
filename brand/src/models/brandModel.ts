@@ -37,6 +37,7 @@ export interface BrandDoc extends Document {
   thumbnail: { public_id: string; url: string };
   image: { public_id: string; url: string };
   brandCategory: {
+    [x: string]: any;
     name: string;
     categoryId: string;
     products: {

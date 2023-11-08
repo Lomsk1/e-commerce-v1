@@ -4,6 +4,8 @@ import { updateBranch } from "../../../../api/branch/update";
 import { createBranch } from "../../../../api/branch/create";
 import BranchAddWorkingTime from "./addWorkingTime";
 import useAdminBranchStore from "../../../../store/admin/branch";
+import PopupMiddle from "../../../popup/middle";
+import { useState } from "react";
 
 interface FormValues {
   name: string;
@@ -19,8 +21,13 @@ interface FormValues {
 const AdminBranchForm = () => {
   /* Query Client */
   const queryClient = useQueryClient();
-
   /* States */
+  const [errorMsg, setErrorMsg] = useState<{
+    message: string;
+    status: string;
+  } | null>(null);
+
+  /* Stores */
   const { branchId, addTimeBranchId, clearBranchId } = useAdminBranchStore(
     (state) => state
   );
@@ -30,6 +37,7 @@ const AdminBranchForm = () => {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
   } = useForm<FormValues>();
 
@@ -51,6 +59,15 @@ const AdminBranchForm = () => {
         queryClient.invalidateQueries({ queryKey: ["branch"] });
         reset();
       }
+      if (data.status === "error") {
+        setError(data.error.errors.name.path, {
+          type: "custom",
+          message: data.error.errors.name.message,
+        });
+      }
+    },
+    onError: (data) => {
+      console.log(data);
     },
   });
 
@@ -117,6 +134,9 @@ const AdminBranchForm = () => {
           {errors.name?.type === "required" && (
             <span className="error_div">This field is required</span>
           )}
+          {errors.name?.type === "custom" && (
+            <span className="error_div">{errors.name.message}</span>
+          )}
 
           <label htmlFor="city">City:</label>
           <input
@@ -182,6 +202,13 @@ const AdminBranchForm = () => {
         <>
           <BranchAddWorkingTime />
         </>
+      )}
+      {/* Errors */}
+      {errorMsg && (
+        <PopupMiddle
+          text={errorMsg.message}
+          closeFn={() => setErrorMsg(null)}
+        />
       )}
     </>
   );

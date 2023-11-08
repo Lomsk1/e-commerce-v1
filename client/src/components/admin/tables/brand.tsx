@@ -1,21 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BranchesType } from "../../../types/branch";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import useAdminBranchStore from "../../../store/admin/branch";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteBranchTime } from "../../../api/branch/workingTime/delete";
-import BranchEditWorkingTime from "../forms/branch/editTime";
 import { Link } from "react-scroll";
-import { deleteBranch } from "../../../api/branch/delete";
 import { useState } from "react";
 import PopupMiddle from "../../popup/middle";
+import { brandsTypes } from "../../../types/brand";
+import { deleteBrand } from "../../../api/brand/delete";
+import useAdminBrandStore from "../../../store/admin/brand";
+import { deleteBrandCategory } from "../../../api/brand/category/delete";
 
 interface PropTypes {
-  data: BranchesType;
+  data: brandsTypes;
 }
 
-const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
+const AdminBrandTable: React.FC<PropTypes> = ({ data }) => {
   /* Query Client */
   const queryClient = useQueryClient();
 
@@ -26,21 +25,17 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
   } | null>(null);
 
   /* Stores */
-  const {
-    setAddTimeBranchId,
-    setBranchId,
-    setEditTimeBranchId,
-    editTimeBranchId,
-  } = useAdminBranchStore((state) => state);
+  const { setAddCategoryBrandId, setBrandId } = useAdminBrandStore(
+    (state) => state
+  );
 
   /* Mutations */
   /* Query Mutation */
-  const deleteBranchTimeMutation = useMutation({
-    mutationFn: deleteBranchTime,
+  const deleteBrandCategoryMutation = useMutation({
+    mutationFn: deleteBrandCategory,
     onSuccess: (data) => {
-      console.log(data);
       if (data.status === "success") {
-        queryClient.invalidateQueries({ queryKey: ["branch"] });
+        queryClient.invalidateQueries({ queryKey: ["brands"] });
       }
       if (data.status === "error") {
         setErrorMsg({ message: data.message, status: data.status });
@@ -48,34 +43,34 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
     },
   });
 
-  /* Branch Working Time */
-  const deleteBranchWorkingTime = ({
-    timeId,
-    branchId,
+  /* Brand Category */
+  const deleteBrandCategoryFunc = ({
+    categoryId,
+    brandId,
   }: {
-    timeId: string;
-    branchId: string;
+    categoryId: string;
+    brandId: string;
   }): void => {
-    deleteBranchTimeMutation.mutate({
-      timeId: timeId,
-      id: branchId,
+    deleteBrandCategoryMutation.mutate({
+      categoryId: categoryId,
+      id: brandId,
     });
   };
 
-  /* Branch Delete */
-  const deleteBranchMutation = useMutation({
-    mutationFn: deleteBranch,
+  /* Brand delete */
+  const deleteBrandMutation = useMutation({
+    mutationFn: deleteBrand,
     onSuccess: (data) => {
       if (data.status === "success") {
-        queryClient.invalidateQueries({ queryKey: ["branch"] });
+        queryClient.invalidateQueries({ queryKey: ["brands"] });
       } else {
         setErrorMsg(data);
       }
     },
   });
 
-  const branchDelate = (id: string): void => {
-    deleteBranchMutation.mutate({ id: id });
+  const brandDelete = (id: string): void => {
+    deleteBrandMutation.mutate({ id: id });
   };
 
   return (
@@ -87,11 +82,10 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Address</th>
-                  <th>Phone</th>
-                  <th>City</th>
-                  <th>wHours</th>
-                  <th>Coords</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Thumbnail</th>
+                  <th>Image</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -99,31 +93,18 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
                 {data.data.map((data) => (
                   <tr key={data.id}>
                     <td>{data.name}</td>
-                    <td>{data.address}</td>
-                    <td>{data.phone}</td>
-                    <td>{data.city}</td>
+                    <td>{data.description}</td>
                     <td className="child_actions">
-                      {data.branchWorkingHours.map((h) => (
+                      {data.brandCategory.map((h) => (
                         <fieldset key={h._id}>
-                          <p>
-                            {h.weekDay}/{h.hour}
-                          </p>
+                          <p>{h.name}</p>
                           <div>
-                            <button
-                              className="edit"
-                              onClick={() => {
-                                setEditTimeBranchId(h._id);
-                                setBranchId(data.id);
-                              }}
-                            >
-                              Edit
-                            </button>
                             <button
                               className="delete"
                               onClick={() =>
-                                deleteBranchWorkingTime({
-                                  timeId: h._id,
-                                  branchId: data.id,
+                                deleteBrandCategoryFunc({
+                                  categoryId: h._id,
+                                  brandId: data.id,
                                 })
                               }
                             >
@@ -134,16 +115,18 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
                       ))}
                     </td>
                     <td>
-                      <p>lat: {data.branchCoord.lat}</p>,
-                      <p>long: {data.branchCoord.long}</p>
+                      <img src={data.thumbnail?.url} alt="th" />
+                    </td>
+                    <td>
+                      <img src={data.image?.url} alt="th" />
                     </td>
 
                     <td className="actions">
                       <button
                         className="other"
-                        onClick={() => setAddTimeBranchId(data.id)}
+                        onClick={() => setAddCategoryBrandId(data.id)}
                       >
-                        Add Working Time
+                        Add Categories
                       </button>
                       <Link
                         activeClass="active"
@@ -153,14 +136,14 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
                         offset={-20}
                         duration={500}
                         delay={300}
-                        onClick={() => setBranchId(data.id)}
+                        onClick={() => setBrandId(data.id)}
                         className="edit"
                       >
                         <FontAwesomeIcon icon={faEdit} />
                       </Link>
                       <button
                         className="del"
-                        onClick={() => branchDelate(data.id)}
+                        onClick={() => brandDelete(data.id)}
                       >
                         {<FontAwesomeIcon icon={faTrash} />}
                       </button>
@@ -170,7 +153,7 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
               </tbody>
             </table>
           </div>
-          {editTimeBranchId && <BranchEditWorkingTime />}
+
           {/* Errors */}
           {errorMsg && (
             <PopupMiddle
@@ -184,4 +167,4 @@ const AdminBranchTable: React.FC<PropTypes> = ({ data }) => {
   );
 };
 
-export default AdminBranchTable;
+export default AdminBrandTable;

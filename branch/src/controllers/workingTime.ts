@@ -33,11 +33,6 @@ export const createBranchWorkingTime = catchAsync(
 
         return next(new AppError("Product branch does not created", 404));
       }
-      console.log(
-        data.branchWorkingHours[
-          data.branchWorkingHours.length - 1
-        ].id.toString()
-      );
     }
 
     res.status(201).json({

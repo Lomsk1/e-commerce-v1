@@ -1,4 +1,5 @@
 export interface brandType {
+  message: string | null;
   status: string;
   data: {
     id: string;

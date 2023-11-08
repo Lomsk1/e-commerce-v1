@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LabelProducts from "../../components/labelProducts";
 import { faHackerNews } from "@fortawesome/free-brands-svg-icons";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import ProductSlideContainer from "../../components/productSlideContainer";
 import { getAllProduct } from "../../api/products/get";
 import { useQuery } from "@tanstack/react-query";
@@ -20,7 +20,7 @@ import { getAllBrands } from "../../api/brand/get";
 
 const HomePage: React.FC = () => {
   /* Router */
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   /* States */
   const [saleData, setSaleData] = useState<ProductsType["data"] | []>([]);
@@ -183,7 +183,7 @@ const HomePage: React.FC = () => {
         <button
           className="sales_button"
           onClick={() => {
-            navigate("/hot_deal_main_page");
+            // navigate("/hot_deal_main_page");
           }}
         >
           More Sales
@@ -200,7 +200,7 @@ const HomePage: React.FC = () => {
         <button
           className="sales_button"
           onClick={() => {
-            navigate("/new_product");
+            // navigate("/new_product");
           }}
         >
           More Products

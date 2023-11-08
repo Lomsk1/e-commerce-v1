@@ -1,13 +1,13 @@
 import { getUserCookie } from "../../../helpers/user";
-import { branchBaseURL } from "../../../middlewares/env";
+import { brandBaseURL } from "../../../middlewares/env";
 import { ResponseError } from "../../../utils/responseError";
 
-export const deleteBranchTime = async ({
+export const deleteBrandCategory = async ({
   id,
-  timeId,
+  categoryId,
 }: {
   id: string;
-  timeId: string;
+  categoryId: string;
 }): Promise<{
   message: string;
   status: string;
@@ -16,9 +16,9 @@ export const deleteBranchTime = async ({
   if (!userToken) null;
   try {
     const response = await fetch(
-      `${branchBaseURL}api/v1/branch/${id}/workingTime/${timeId}`,
+      `${brandBaseURL}api/v1/brand/${id}/category/${categoryId}`,
       {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,

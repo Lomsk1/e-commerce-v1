@@ -131,3 +131,31 @@ export const getProductsBySlug = catchAsync(
     });
   }
 );
+
+export const getProductStats = catchAsync(
+  async (_req: Request, res: Response, _next: NextFunction) => {
+    const stats = await Product.aggregate([
+      {
+        $match: { price: { $gte: 1 } },
+      },
+      {
+        $group: {
+          _id: { $toUpper: "$color" },
+          numProducts: { $sum: 1 },
+          numInStock: { $sum: "$totalInStock" },
+          numTop: { $sum: "$top" },
+          numPopular: { $sum: "$popularity" },
+          numNew: { $sum: "$new" },
+        },
+      },
+    ]);
+
+    const totalProducts = await Product.find();
+
+    res.status(200).json({
+      status: "success",
+      total: totalProducts.length,
+      stats,
+    });
+  }
+);

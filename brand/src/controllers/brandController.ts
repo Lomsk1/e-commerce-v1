@@ -9,7 +9,6 @@ import cloudinary from "../utils/cloudinary";
 
 export const getAllBrand = getAll(Brand);
 export const getBrand = getOne(Brand);
-export const deleteBrand = deleteOne(Brand);
 
 export const createBrand = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
@@ -179,6 +178,35 @@ export const updateBrand = catchAsync(
     res.status(200).json({
       status: "success",
       data,
+    });
+  }
+);
+
+export const deleteBrand = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const data = await Brand.findById(req.params.id);
+
+    if (!data) {
+      return next(new AppError("No Document found with that ID", 404));
+    }
+
+    // Delete associated images if they exist
+    if (data.thumbnail && data.thumbnail.public_id) {
+      // Delete the thumbnail image from Cloudinary
+      await cloudinary.uploader.destroy(data.thumbnail.public_id);
+    }
+
+    if (data.image && data.image.public_id) {
+      // Delete the image from Cloudinary
+      await cloudinary.uploader.destroy(data.image.public_id);
+    }
+
+    // Now delete the brand itself
+    await data.deleteOne();
+
+    res.status(200).json({
+      status: "success",
+      data: null,
     });
   }
 );

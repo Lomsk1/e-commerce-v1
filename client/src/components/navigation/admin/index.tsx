@@ -14,10 +14,18 @@ const AdminNavigation = () => {
             <li>
               <NavLink to={"/admin/branch"}>Branch</NavLink>
             </li>
-            <li>{/* <NavLink to={"/admin_brand"}>Brand</NavLink> */}</li>
-            <li>{/* <NavLink to={"/admin_category"}>Category</NavLink> */}</li>
+            <li>
+              <NavLink to={"/admin/brand"}>Brand</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/admin/category"}>Category</NavLink>
+            </li>
+            <li>
+              <NavLink to={`/admin/product?page=${1}&limit=${2}`}>
+                Product
+              </NavLink>
+            </li>
             <li>{/* <NavLink to={"/admin_news"}>News</NavLink> */}</li>
-            <li>{/* <NavLink to={"/admin_product"}>Product</NavLink> */}</li>
             <li>
               {/* <NavLink to={"/admin_weekly_sale"}>Weekly Sales</NavLink> */}
             </li>

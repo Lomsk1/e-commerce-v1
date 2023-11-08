@@ -6,6 +6,7 @@ import {
   deleteProduct,
   getAllProduct,
   getProduct,
+  getProductStats,
   getProductsBySlug,
   updateProduct,
 } from "../controllers/productController";
@@ -14,6 +15,8 @@ import { uploadPhoto } from "../middlewares/multer";
 const productRoute = express.Router({
   mergeParams: true,
 });
+
+productRoute.get("/product-stats", getProductStats);
 
 productRoute.get("/search/:slug", getProductsBySlug);
 

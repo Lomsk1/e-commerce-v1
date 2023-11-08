@@ -23,6 +23,9 @@ import ProtectedRoute from "./hoc/protected";
 import PasswordChangePage from "./pages/auth/passwordChange";
 import AdminPanelPage from "./pages/admin/home";
 import AdminBranch from "./pages/admin/branch";
+import AdminBrand from "./pages/admin/brand";
+import AdminCategory from "./pages/admin/category";
+import AdminProduct from "./pages/admin/product";
 
 const clientRoute = createBrowserRouter(
   createRoutesFromElements(
@@ -57,7 +60,7 @@ const clientRoute = createBrowserRouter(
         />
 
         <Route
-          path="/admin/"
+          path="/admin/:id"
           element={
             <ProtectedRoute>
               <AdminPanelPage />
@@ -69,6 +72,30 @@ const clientRoute = createBrowserRouter(
           element={
             <ProtectedRoute>
               <AdminBranch />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/brand"
+          element={
+            <ProtectedRoute>
+              <AdminBrand />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/category"
+          element={
+            <ProtectedRoute>
+              <AdminCategory />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/product"
+          element={
+            <ProtectedRoute>
+              <AdminProduct />
             </ProtectedRoute>
           }
         />
