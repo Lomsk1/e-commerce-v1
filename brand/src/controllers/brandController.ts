@@ -3,7 +3,7 @@ import path from "path";
 import { NextFunction, Response, Request } from "express";
 import Brand from "../models/brandModel";
 import { catchAsync } from "../utils/catchAsync";
-import { deleteOne, getAll, getOne } from "./common/factoryController";
+import { getAll, getOne } from "./common/factoryController";
 import AppError from "../utils/appErrors";
 import cloudinary from "../utils/cloudinary";
 

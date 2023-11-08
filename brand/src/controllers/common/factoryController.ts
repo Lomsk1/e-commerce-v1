@@ -4,8 +4,6 @@ import { catchAsync } from "../../utils/catchAsync";
 import { NextFunction, Request, Response } from "express";
 import APIFeatures from "../../utils/apiFeatures";
 import AppError from "../../utils/appErrors";
-import { join } from "path";
-import { promises as fsPromises } from "fs";
 
 // Default
 
