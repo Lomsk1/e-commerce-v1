@@ -4,7 +4,6 @@ import { catchAsync } from "../../utils/catchAsync";
 import { NextFunction, Request, Response } from "express";
 import APIFeatures from "../../utils/apiFeatures";
 import AppError from "../../utils/appErrors";
-import Product from "../../models/productModel";
 
 // Default
 

@@ -1,12 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Product from "../models/productModel";
 import { catchAsync } from "../utils/catchAsync";
-import {
-  deleteOne,
-  getAll,
-  getOne,
-  updateOne,
-} from "./common/factoryController";
+import { deleteOne, getAll, getOne } from "./common/factoryController";
 import cloudinary from "../utils/cloudinary";
 import fs from "fs";
 import path from "path";
