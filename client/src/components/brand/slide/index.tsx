@@ -53,6 +53,7 @@ const BrandSlider: React.FC<{ brandData: brandsTypes }> = ({ brandData }) => {
               <img src={brands.thumbnail.url} alt="thumbnail" />
             </div>
           ))} */}
+          {brandData && <></>}
         </Slider>
       </section>
     </>
