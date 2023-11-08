@@ -1,4 +1,4 @@
-import mongoose, { Query, Document, Model } from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 
 interface WishlistAttrs {
   user: mongoose.Types.ObjectId;
